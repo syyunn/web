@@ -2,6 +2,7 @@
 Check package.json's `scripts` propoerty.
 
 `yarn storybook` 
+
 Check react components one by one with StorybookUI components-guide
 
 - [ ] Nav Layout
@@ -10,10 +11,13 @@ Check react components one by one with StorybookUI components-guide
 
 
 `yarn start`
+
 Build tailwindcss first before react-start - `src/index.css` generated
 
 `yarn build`
+
 Build tailwindcss first before react-build - `src/index.css` generated
 
 `yarn test`
+
 Curently using react-jest
