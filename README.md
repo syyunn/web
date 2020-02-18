@@ -9,15 +9,3 @@ Check react components one by one with StorybookUI components-guide
 - [ ] Main Panel Layout
 - [x] LOGO svg
 
-
-`yarn start`
-
-Build tailwindcss first before react-start - `src/index.css` generated
-
-`yarn build`
-
-Build tailwindcss first before react-build - `src/index.css` generated
-
-`yarn test`
-
-Curently using react-jest
