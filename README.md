@@ -2,7 +2,7 @@
 `yarn storybook` 
 
 ### Check Login Functionality
-Click `Sign in` button inside the after launch `storybook`.
+Click `Sign in` button after launch `storybook`.
 
 ## Todos
 Check react components one by one with StorybookUI components-guide
