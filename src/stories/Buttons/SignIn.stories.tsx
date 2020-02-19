@@ -1,6 +1,8 @@
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
+import { CheckMetamaskInstalled } from 'metamask-login-front-logic'
+
 export default {
     title: 'Buttons/SignIn',
 };
@@ -13,7 +15,7 @@ export const Button: FunctionComponent<SignInProp> = ({ buttonColor = "blue" }) 
     const button_cx = classNames(`bg-animate pointer fw6 items-center br2 bn justify-center pa2 f6 bg-${buttonColor} ma0 white pa2 inline-flex`)
 
     return (
-        <button className={button_cx} style={{ minWidth: "70px" }}>
+        <button className={button_cx} style={{ minWidth: "70px" }} onClick={CheckMetamaskInstalled}>
             <div className="dn">Sign in</div>
             <div className="dib">Sign in</div>
         </button >
