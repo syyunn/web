@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from 'react';
-import classNames from 'classnames';
 
 export default {
     title: 'Assets/Logo',
