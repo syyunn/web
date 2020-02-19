@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
-import { CheckMetamaskInstalled, GetPublicAddress, Authenticate } from 'metamask-login-front-logic'
+import { Authenticate } from 'metamask-login-front-logic'
 
 export default {
     title: 'Buttons/SignIn',
