@@ -10,4 +10,4 @@ Check react components one by one with StorybookUI components-guide
 - [x] Textual Logo-svg
 - [ ] Geometric Logo-SVG
 - [ ] Sign-In Button
-
+- [ ] Import/Customize hover-light-shadow, animate-all from Observable's custom-tachyon.
