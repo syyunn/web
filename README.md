@@ -1,9 +1,6 @@
 ## How to Run
 `yarn storybook` 
 
-### Check Login Functionality
-Click `Sign in` button after launch `storybook`.
-
 ## Todos
 Check react components one by one with StorybookUI components-guide
 - [ ] Entire Frames @ App.tsx
