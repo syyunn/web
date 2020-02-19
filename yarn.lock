@@ -8579,11 +8579,12 @@ merge2@^1.2.3:
   resolved "https://registry.yarnpkg.com/merge2/-/merge2-1.3.0.tgz#5b366ee83b2f1582c48f87e47cf1a9352103ca81"
   integrity sha512-2j4DAdlBOkiSZIsaXk4mTE3sRS02yBHAtfy127xRV3bQUFqXkjHCHLW6Scv7DwNRbIWNHH8zpnz9zMaKXIdvYw==
 
-metamask-login-front-logic@1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/metamask-login-front-logic/-/metamask-login-front-logic-1.0.8.tgz#5ae59c8d6c037af2b0138f4c14b922cf8883f0da"
-  integrity sha512-pYXGW/LZ92BUys7D6dmgGwPcZ40nKeM5qAglZ82IX3uExVIrFmAUHg71Ulan/tLIKYJbmclALrYzINbn9OcRCg==
+metamask-login-front-logic@1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/metamask-login-front-logic/-/metamask-login-front-logic-1.0.9.tgz#1cf74b614f466d5bad01b5e963002a593941bd22"
+  integrity sha512-WXmhLGj2vVAbBvREgc3l521P3LF+wE7K9iYYXGku7WsswyD5CBDnb1/gc4Tho/bpJ2OZh8lHx6rVZ4Q7hZ8CxA==
   dependencies:
+    bignumber.js "^9.0.0"
     web3 "^1.2.6"
 
 methods@~1.1.2:
