@@ -32,4 +32,4 @@ export const NavigationHeader: FunctionComponent<NavigationHeaderProps> = ({
     );
 };
 
-export const NavigationHeaderWithLogo = () => NavigationHeader({ height: 55, logo: Logo({ textColor: "blue" }) });
+export const NavigationHeaderWithLogo = () => NavigationHeader({ height: 70, logo: Logo({ textColor: "navy" }), bgColor: "washed-yellow" });
