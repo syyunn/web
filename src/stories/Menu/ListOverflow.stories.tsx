@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from 'react';
-import classNameNames from 'classNamenames';
 
 export default {
     title: 'Menu/ListOverflow',

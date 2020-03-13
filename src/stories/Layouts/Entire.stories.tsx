@@ -20,4 +20,4 @@ export const EntireScreen = ({ components = null }: EntireScreenProps) => {
     );
 };
 
-export const EntireScreenWithNavigationHeaderWithLogo = () => EntireScreen({ components: [NavigationHeaderWithLogoWithoutBorderBottomLine, ListOverflowDS, ListOverflowArticle, Article] });
+export const Entire = () => EntireScreen({ components: [NavigationHeaderWithLogoWithoutBorderBottomLine, ListOverflowDS, ListOverflowArticle, Article] });
