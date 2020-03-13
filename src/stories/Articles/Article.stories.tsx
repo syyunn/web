@@ -23,7 +23,7 @@ export const Article: FunctionComponent<LogoProp> = ({ textColor = "navy" }) => 
                 </p>
             </header>
             <div className="fn fl-ns w-50-ns">
-                <p className="f5 lh-copy measure mt0-ns fw4 near-black" style={{ whiteSpace: "pre-wrap" }}>
+                <p className="f4 lh-copy measure mt0-ns fw4 near-black" style={{ whiteSpace: "pre-wrap" }}>
                     {text.replace(/(?:\r\n|\r|\n)/g, ' ')}
                 </p>
                 {/* <p className="f5 lh-copy measure">
