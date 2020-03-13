@@ -1,8 +1,9 @@
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
-import { NavigationHeader, NavigationHeaderWithLogo } from './NavHeader.stories';
-
+import { NavigationHeader, NavigationHeaderWithLogo, NavigationHeaderWithLogoWithoutBorderBottomLine } from './NavHeader.stories';
+import { Article } from '../Articles/Article.stories'
+import { ListOverflow, ListOverflowDS, ListOverflowArticle } from '../Menu/ListOverflow.stories'
 
 export default {
     title: 'Layouts/Entire',
@@ -19,4 +20,4 @@ export const EntireScreen = ({ components = null }: EntireScreenProps) => {
     );
 };
 
-export const EntireScreenWithNavigationHeaderWithLogo = () => EntireScreen({ components: [NavigationHeaderWithLogo] });
+export const EntireScreenWithNavigationHeaderWithLogo = () => EntireScreen({ components: [NavigationHeaderWithLogoWithoutBorderBottomLine, ListOverflowDS, ListOverflowArticle, Article] });
