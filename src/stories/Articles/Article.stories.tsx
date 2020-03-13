@@ -17,14 +17,15 @@ export const Article: FunctionComponent<LogoProp> = ({ textColor = "navy" }) => 
                 <h1 className="f1 lh-title fw9 mb3 mt0 pt3 bt bw2">
                     Korea - Various Measures on Beef
                 </h1>
-                <p className="f4 mid-gray lh-copy pv3 fw5 ">
-                    <span className="bg-blue">Test </span>
-                    {art.replace(/(?:\r\n|\r|\n)/g, ' ')}
+                <p className="f4 mid-gray lh-copy pv3 fw5 " style={{ whiteSpace: "pre-wrap" }}>
+                    {/* <span className="bg-blue">Test </span> */}
+                    {text.replace(/(?:\r\n|\r|\n)/g, ' ')}
                 </p>
             </header>
             <div className="fn fl-ns w-50-ns">
-                <p className="f4 lh-copy measure mt0-ns fw4 near-black" style={{ whiteSpace: "pre-wrap" }}>
-                    {text.replace(/(?:\r\n|\r|\n)/g, ' ')}
+                <p className="f4 lh-copy pv3 mt0-ns fw5 mid-gray" style={{ whiteSpace: "pre-wrap" }}>
+                    {art.replace(/(?:\r\n|\r|\n)/g, ' ')}
+
                 </p>
                 {/* <p className="f5 lh-copy measure">
                 All typography consists of letters. These appear either in the form of a
