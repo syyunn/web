@@ -7,10 +7,9 @@ const initialState = {
 export default function (state = initialState, action: DS_ACtionType) {
     switch (action.type) {
         case SELECT_DS: {
-            const { ds } = action.payload;
-            console.log("ds", ds)
+            console.log("action", action.payload)
             return {
-                ds: ds
+                ds: action.payload
             };
         }
         default:

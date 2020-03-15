@@ -1,26 +1,29 @@
 import React, { FunctionComponent } from 'react';
 import { connect, ConnectedProps } from "react-redux";
+import { useDispatch } from "react-redux";
+
 import { selectDS } from "../../redux/actions";
+import { SELECT_DS } from "../../redux/actionTypes";
 
-const connector = connect(null, { selectDS })
-
-type PropsFromRedux = ConnectedProps<typeof connector>
-
-type ListOverflowProps = PropsFromRedux & {
+type ListOverflowProps = {
     prefix: String
     dss: Array<number | string>
 }
 
 export const ListOverflow: React.FC<ListOverflowProps> = props => {
+
     const { prefix, dss } = props
-    const onClick = () => {
-        props.selectDS("add-todo")
-    }
+    const dispatch = useDispatch();
 
     return (
         <nav className="pv2-ns ph4">
             <div className="nowrap overflow-x-auto">
-                <button className="add-todo" onClick={onClick}>
+                <button className="add-todo" onClick={() =>
+                    dispatch({
+                        type: SELECT_DS,
+                        payload: "test"
+                    })
+                }>
                     Add Todo
                 </button>
                 {

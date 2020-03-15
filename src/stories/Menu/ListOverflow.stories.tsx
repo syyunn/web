@@ -1,13 +1,25 @@
 import React, { FunctionComponent } from 'react';
-import { selectDS } from "../../redux/actions";
 import { ListOverflow } from './ListOverflow'
+import { action } from '@storybook/addon-actions';
+import { Provider } from 'react-redux';
+
+const store = {
+    getState: () => {
+        return {
+            ds: 2,
+        };
+    },
+    subscribe: () => 0,
+    dispatch: action('dispatch'),
+};
 
 export default {
+    component: ListOverflow,
     title: 'Menu/ListOverflow',
+    decorators: [story => <Provider store={store}>{story()}</Provider>],
 };
 
 export const ListOverflowDS = () => ListOverflow({
-    selectDS: selectDS,
     prefix: 'ds', dss: [2, 18, 22, 31, 34, 46, 56, 58, 60, 62, 67, 68, 69, 75, 76,
         87, 90, 98, 103, 108, 121, 122, 135, 136, 139, 141, 146, 152,
         155, 161, 162, 165, 166, 174, 175, 177, 184, 202, 207, 212,

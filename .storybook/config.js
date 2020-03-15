@@ -8,11 +8,10 @@ import rootReducer from '../src/redux/reducers/index';
 
 const store = createStore(rootReducer);
 
-addDecorator(S => (
+addDecorator(Stories => (
     <Provider store={store}>
-        <S />
+        <Stories />
     </Provider>
 ));
-
 
 configure(require.context('../src', true, /\.stories\.tsx$/), module);
