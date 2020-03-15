@@ -24,12 +24,15 @@ export const NavigationHeader: FunctionComponent<NavigationHeaderProps> = ({
     );
     const div_cx = classNames('w-100 ph4-l center flex justify-between items-center pv2');
     const div_logo_wrapper_cx = classNames('flex flex-grow-1 items-center');
+    const a_logo_wrapper_cx = classNames('flex items-center no-underline')
     const div_logo_left_wrapper_cx = classNames('flex flex-shrink-0 items-center ml3 sans-serif bg-red');
     return (
         <nav className={nav_cx}>
             <div className={div_cx} style={{ height }}>
                 <div className={div_logo_wrapper_cx}>
-                    {logo}
+                    <a className={a_logo_wrapper_cx} href="/" style={{ lineHeight: 0 }}>
+                        {logo}
+                    </a>
                 </div>
                 <div className={div_logo_left_wrapper_cx}>
                 </div>
