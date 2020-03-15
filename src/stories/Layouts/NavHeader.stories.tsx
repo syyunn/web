@@ -23,10 +23,16 @@ export const NavigationHeader: FunctionComponent<NavigationHeaderProps> = ({
         `z-4 top-0 bb w-100 relative bg-${bgColor} b--${bbColor}`,
     );
     const div_cx = classNames('w-100 ph4-l center flex justify-between items-center pv2');
+    const div_logo_wrapper_cx = classNames('flex flex-grow-1 items-center');
+    const div_logo_left_wrapper_cx = classNames('flex flex-shrink-0 items-center ml3 sans-serif bg-red');
     return (
         <nav className={nav_cx}>
             <div className={div_cx} style={{ height }}>
-                {logo}
+                <div className={div_logo_wrapper_cx}>
+                    {logo}
+                </div>
+                <div className={div_logo_left_wrapper_cx}>
+                </div>
             </div>
         </nav>
     );
