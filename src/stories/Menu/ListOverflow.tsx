@@ -12,12 +12,11 @@ type ListOverflowProps = {
 
 export const ListOverflow: React.FC<ListOverflowProps> = props => {
 
-
     const { prefix, dss } = props
     const dispatch = useDispatch();
-    const selector = (state: DS) => state.ds
-    const select = useSelector(selector)
-    console.log("select", select)
+    const getDS = (state: DS) => state.ds
+    const curr_ds = useSelector(getDS)
+    console.log("curr_ds_val: ", curr_ds) //about logging default ds value 
 
     return (
         <nav className="pv2-ns ph4">
@@ -41,3 +40,4 @@ export default connect(
     null,
     { selectDS }
 )(ListOverflow);
+

@@ -1,23 +1,19 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import { ListOverflow } from './ListOverflow'
 import { action } from '@storybook/addon-actions';
-import { Provider } from 'react-redux';
-// import { store } from '../../redux/store'
 
-const store = {
-    getState: () => {
-        return {
-            ds: 2,
-        };
-    },
-    subscribe: () => 0,
-    dispatch: action('dispatch'),
-};
+// const store = {
+//     getState: () => {
+//         return {
+//             ds: 2,
+//         };
+//     },
+//     subscribe: () => 0,
+//     dispatch: action('dispatch'),
+// };
 
 export default {
-    component: ListOverflow,
     title: 'Menu/ListOverflow',
-    decorators: [story => <Provider store={store}>{story()}</Provider>],
 };
 
 export const ListOverflowDS = () => ListOverflow({
@@ -35,37 +31,37 @@ export const ListOverflowDS = () => ListOverflow({
         495, 499, 504, 505, 513, 518, 523]
 })
 
-// export const ListOverflowArticle = () => ListOverflow({
-//     prefix: '', dss: ['Article I', 'Article I:1', 'Article II', 'Article II:1',
-//         'Article II:1(a)', 'Article II:1(b)', 'Article II:2',
-//         'Article II:3', 'Article III', 'Article III:1',
-//         'Article III:2', 'Article III:4', 'Article III:5',
-//         'Article III:7', 'Article IV', 'Article IX',
-//         'Article IX:2', 'Article V', 'Article V:1',
-//         'Article V:2', 'Article V:3', 'Article V:3(a)',
-//         'Article V:4', 'Article V:5', 'Article V:6',
-//         'Article V:7', 'Article VI', 'Article VI:1',
-//         'Article VI:2', 'Article VI:2(a)', 'Article VI:2(b)',
-//         'Article VI:3', 'Article VI:5(a)', 'Article VI:6',
-//         'Article VII', 'Article VII:1', 'Article VII:2',
-//         'Article VII:5', 'Article VIII', 'Article VIII:1',
-//         'Article VIII:3', 'Article VIII:4', 'Article X',
-//         'Article X:1', 'Article X:2', 'Article X:3',
-//         'Article X:3(a)', 'Article XI',
-//         'Article XI:1', 'Article XIII',
-//         'Article XIII:1', 'Article XIII:2',
-//         'Article XIII:3(b)', 'Article XIX',
-//         'Article XIX:1', 'Article XIX:2',
-//         'Article XIX:3', 'Article XV',
-//         'Article XVI', 'Article XVI:1',
-//         'Article XVI:4', 'Article XVII',
-//         'Article XVII:1', 'Article XVII:1(c)',
-//         'Article XVIII', 'Article XVIII:10',
-//         'Article XVIII:11', 'Article XX',
-//         'Article XXI', 'Article XXII',
-//         'Article XXII:1', 'Article XXIII',
-//         'Article XXIII:1', 'Article XXIII:1(a)',
-//         'Article XXIII:1(b)', 'Article XXIV',
-//         'Article XXIV:12', 'Article XXIV:5(b)',
-//         'Article XXIV:6', 'Article XXVIII']
-// })
+export const ListOverflowArticle = () => ListOverflow({
+    prefix: '', dss: ['Article I', 'Article I:1', 'Article II', 'Article II:1',
+        'Article II:1(a)', 'Article II:1(b)', 'Article II:2',
+        'Article II:3', 'Article III', 'Article III:1',
+        'Article III:2', 'Article III:4', 'Article III:5',
+        'Article III:7', 'Article IV', 'Article IX',
+        'Article IX:2', 'Article V', 'Article V:1',
+        'Article V:2', 'Article V:3', 'Article V:3(a)',
+        'Article V:4', 'Article V:5', 'Article V:6',
+        'Article V:7', 'Article VI', 'Article VI:1',
+        'Article VI:2', 'Article VI:2(a)', 'Article VI:2(b)',
+        'Article VI:3', 'Article VI:5(a)', 'Article VI:6',
+        'Article VII', 'Article VII:1', 'Article VII:2',
+        'Article VII:5', 'Article VIII', 'Article VIII:1',
+        'Article VIII:3', 'Article VIII:4', 'Article X',
+        'Article X:1', 'Article X:2', 'Article X:3',
+        'Article X:3(a)', 'Article XI',
+        'Article XI:1', 'Article XIII',
+        'Article XIII:1', 'Article XIII:2',
+        'Article XIII:3(b)', 'Article XIX',
+        'Article XIX:1', 'Article XIX:2',
+        'Article XIX:3', 'Article XV',
+        'Article XVI', 'Article XVI:1',
+        'Article XVI:4', 'Article XVII',
+        'Article XVII:1', 'Article XVII:1(c)',
+        'Article XVIII', 'Article XVIII:10',
+        'Article XVIII:11', 'Article XX',
+        'Article XXI', 'Article XXII',
+        'Article XXII:1', 'Article XXIII',
+        'Article XXIII:1', 'Article XXIII:1(a)',
+        'Article XXIII:1(b)', 'Article XXIV',
+        'Article XXIV:12', 'Article XXIV:5(b)',
+        'Article XXIV:6', 'Article XXVIII']
+})
