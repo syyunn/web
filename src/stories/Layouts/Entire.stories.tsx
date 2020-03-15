@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import { NavigationHeader, NavigationHeaderWithLogo, NavigationHeaderWithLogoWithoutBorderBottomLine } from './NavHeader.stories';
 import { Article } from '../Articles/Article.stories'
-import { ListOverflow, ListOverflowDS, ListOverflowArticle } from '../Menu/ListOverflow.stories'
+import { ListOverflowDS, ListOverflowArticle } from '../Menu/ListOverflow.stories'
 
 export default {
     title: 'Layouts/Entire',
