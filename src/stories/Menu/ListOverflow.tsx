@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
 
 import { selectDS } from "../../redux/actions";
+import { STATE } from "../../redux/actionTypes"
 
 type ListOverflowProps = {
     type: String
@@ -14,20 +15,30 @@ export const ListOverflow: React.FC<ListOverflowProps> = props => {
 
     const { type, prefix, data } = props
     const dispatch = useDispatch();
-    // const getDS = (state: DS) => state.ds
-    // const curr_ds = useSelector(getDS)
-    // console.log("curr_ds_val: ", curr_ds) //about logging default ds value 
+    const getSTATE = (state: STATE) => state
+    const curr_state = useSelector(getSTATE)
+
+    console.log("curr_state: ", curr_state.select.ds, curr_state.select.article) //about logging default ds value 
 
     return (
         <nav className="pv2-ns ph4">
             <div className="nowrap overflow-x-auto">
                 {
-                    data.map(item => <button className="link dim gray f5 f4-ns dib mr3" onClick={() =>
-                        dispatch({
-                            type: type,
-                            payload: item
-                        })
-                    }>{prefix}{item}</button>)
+                    data.map(item =>
+                        (item == curr_state.select.ds) || (item == curr_state.select.article) ?
+                            <button className="link dim red f5 f4-ns dib mr3" onClick={() =>
+                                dispatch({
+                                    type: type,
+                                    payload: item
+                                })
+                            }>{prefix}{item}</button> :
+                            <button className="link dim gray f5 f4-ns dib mr3" onClick={() =>
+                                dispatch({
+                                    type: type,
+                                    payload: item
+                                })
+                            }>{prefix}{item}</button>
+                    )
                 }
             </div>
         </nav>)
