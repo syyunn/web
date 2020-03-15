@@ -1,4 +1,4 @@
 import { combineReducers } from "redux";
-import ds from "./ds";
+import select from "./select";
 
-export default combineReducers({ ds });
+export default combineReducers({ select });
