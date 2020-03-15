@@ -1,28 +1,14 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
+import { ListOverflow } from './ListOverflow'
+import { SELECT_DS, SELECT_ARTICLE } from "../../redux/actionTypes";
 
 export default {
     title: 'Menu/ListOverflow',
 };
 
-type ListOverflowProps = {
-    prefix: String
-    dss: Array<number | string>
-}
-
-export const ListOverflow = ({ prefix = 'ds', dss = [1, 2, 3] }: ListOverflowProps) => {
-    return (
-        <nav className="pv2-ns ph4">
-            <div className="nowrap overflow-x-auto">
-                <a className="link dim gray f5 f4-ns dib mr3 bg-black-20" href="#" title="Link 1">{prefix}</a>
-                {
-                    dss.map(ds => <a className="link dim gray f5 f4-ns dib mr3" href="#" title="Link 1">{prefix}{ds}</a>)
-                }
-            </div>
-        </nav>)
-}
-
 export const ListOverflowDS = () => ListOverflow({
-    prefix: 'ds', dss: [2, 18, 22, 31, 34, 46, 56, 58, 60, 62, 67, 68, 69, 75, 76,
+    type: SELECT_DS,
+    prefix: 'ds', data: [2, 18, 22, 31, 34, 46, 56, 58, 60, 62, 67, 68, 69, 75, 76,
         87, 90, 98, 103, 108, 121, 122, 135, 136, 139, 141, 146, 152,
         155, 161, 162, 165, 166, 174, 175, 177, 184, 202, 207, 212,
         217, 219, 221, 231, 234, 238, 244, 245, 246, 248, 257, 264,
@@ -37,7 +23,8 @@ export const ListOverflowDS = () => ListOverflow({
 })
 
 export const ListOverflowArticle = () => ListOverflow({
-    prefix: '', dss: ['Article I', 'Article I:1', 'Article II', 'Article II:1',
+    type: SELECT_ARTICLE,
+    prefix: '', data: ['Article I', 'Article I:1', 'Article II', 'Article II:1',
         'Article II:1(a)', 'Article II:1(b)', 'Article II:2',
         'Article II:3', 'Article III', 'Article III:1',
         'Article III:2', 'Article III:4', 'Article III:5',
