@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { ListOverflow } from './ListOverflow'
 import { action } from '@storybook/addon-actions';
 import { Provider } from 'react-redux';
+// import { store } from '../../redux/store'
 
 const store = {
     getState: () => {

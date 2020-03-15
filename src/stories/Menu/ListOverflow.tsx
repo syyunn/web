@@ -1,9 +1,9 @@
-import React, { FunctionComponent } from 'react';
-import { connect, ConnectedProps } from "react-redux";
-import { useDispatch } from "react-redux";
+import React from 'react';
+import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { selectDS } from "../../redux/actions";
-import { SELECT_DS } from "../../redux/actionTypes";
+import { SELECT_DS, DS } from "../../redux/actionTypes";
 
 type ListOverflowProps = {
     prefix: String
@@ -12,8 +12,12 @@ type ListOverflowProps = {
 
 export const ListOverflow: React.FC<ListOverflowProps> = props => {
 
+
     const { prefix, dss } = props
     const dispatch = useDispatch();
+    const selector = (state: DS) => state.ds
+    const select = useSelector(selector)
+    console.log("select", select)
 
     return (
         <nav className="pv2-ns ph4">
