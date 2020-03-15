@@ -1,9 +1,10 @@
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
-import { NavigationHeader, NavigationHeaderWithLogo, NavigationHeaderWithLogoWithoutBorderBottomLine } from './NavHeader.stories';
+import { NavigationHeader, NavigationHeaderWithLogo, NavigationHeaderWithLogoWithoutBorderBottomLine, NavigationHeaderWithTextLogoWithoutBorderBottomLine } from './NavHeader.stories';
 import { Article } from '../Articles/Article.stories'
 import { ListOverflowDS, ListOverflowArticle } from '../Menu/ListOverflow.stories'
+import { NavHeaderBreadCrums } from '../Menu/BreadCrums.stories'
 
 export default {
     title: 'Layouts/Entire',
@@ -20,4 +21,4 @@ export const EntireScreen = ({ components = null }: EntireScreenProps) => {
     );
 };
 
-export const Entire = () => EntireScreen({ components: [NavigationHeaderWithLogoWithoutBorderBottomLine, ListOverflowDS, ListOverflowArticle, Article] });
+export const Entire = () => EntireScreen({ components: [NavigationHeaderWithTextLogoWithoutBorderBottomLine, NavHeaderBreadCrums, ListOverflowDS, ListOverflowArticle, Article] });

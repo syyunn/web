@@ -21,23 +21,23 @@ export const ListOverflow: React.FC<ListOverflowProps> = props => {
     console.log("curr_state: ", curr_state.select.ds, curr_state.select.article) //about logging default ds value 
 
     return (
-        <nav className="pv2-ns ph4">
+        <nav className="avenir mw10 bb b--silver ph2">
             <div className="nowrap overflow-x-auto">
                 {
                     data.map(item =>
                         (item == curr_state.select.ds) || (item == curr_state.select.article) ?
-                            <button className="link dim red f5 f4-ns dib mr3" onClick={() =>
+                            <a className="f6 f5-l link bg-lightest-blue black-80 hover-bg-lightest-blue dib pa3 ph4-l" onClick={() =>
                                 dispatch({
                                     type: type,
                                     payload: item
                                 })
-                            }>{prefix}{item}</button> :
-                            <button className="link dim gray f5 f4-ns dib mr3" onClick={() =>
+                            }>{prefix}{item}</a> :
+                            <a className="f6 f5-l link bg-animate black-80 hover-bg-lightest-blue dib pa3 ph4-l" onClick={() =>
                                 dispatch({
                                     type: type,
                                     payload: item
                                 })
-                            }>{prefix}{item}</button>
+                            }>{prefix}{item}</a>
                     )
                 }
             </div>
