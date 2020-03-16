@@ -1,5 +1,13 @@
 import * as d3 from 'd3';
 
+type ContainerElemType = SVGSVGElement
+
+type D3PropTypes = {
+    data: string[]
+    width: number
+    height: number
+}
+
 type ContainerElemType = null | SVGSVGElement
 
 type D3PropTypes = {
