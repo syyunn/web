@@ -17,7 +17,7 @@ export const Article: FunctionComponent<LogoProp> = ({ textColor = "navy" }) => 
                 <h1 className="f1 lh-title fw9 mb3 mt0 pt3 tc">
                     Korea - Various Measures on Beef
                 </h1>
-                <p className="f4 lh-copy pv3 mt0-ns fw5 mid-gray" style={{ whiteSpace: "pre-wrap" }}>
+                <p className="f4 lh-copy pv3 mt0-ns fw5 mid-gray ph1-ns" style={{ whiteSpace: "pre-wrap" }}>
                     {text.replace(/(?:\r\n|\r|\n)/g, ' ')}
                 </p>
             </header>
@@ -25,7 +25,7 @@ export const Article: FunctionComponent<LogoProp> = ({ textColor = "navy" }) => 
                 <h1 className="f1 lh-title fw9 mb3 mt0 pt3 tc">
                     Article III: 4
                 </h1>
-                <p className="f4 lh-copy pv3 mt0-ns fw5 mid-gray" style={{ whiteSpace: "pre-wrap" }}>
+                <p className="f4 lh-copy pv3 mt0-ns fw5 mid-gray ph1-ns" style={{ whiteSpace: "pre-wrap" }}>
                     {art.replace(/(?:\r\n|\r|\n)/g, ' ')}
                 </p>
             </header>
