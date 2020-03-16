@@ -1,36 +1,21 @@
 import React, { FunctionComponent, useState, useEffect, useRef } from 'react';
 import D3Component from './D3';
+import * as ReactDOM from 'react-dom';
+import data from './data';
 
 
 export default {
     title: 'D3/D3',
 };
 
-type D3Prop = {
+type LogoProp = {
+    textColor?: string
 }
 
-export const D3: FunctionComponent<D3Prop> = () => {
-    const [data, setData] = useState(['a']);
-    const [width, setWidth] = useState(600);
-    const [height, setHeight] = useState(600);
-
-    const refElement = useRef(null);
-
-    useEffect(() => {
-        // fetch data here, below is just mock.
-        Promise.resolve().then(() => setData(['a', 'b', 'c']))
-    }, [])
-
-    // useEffect hook - creates new d3 component whenever data changes
-    useEffect(() => {
-        if (data && data.length) {
-            // vis = new D3Component(refElement.current, { data, width, height });
-            new D3Component(refElement.current, { data, width, height });
-        }
-    }, [data]);
-
+export const D3: FunctionComponent<LogoProp> = ({ textColor = "navy" }) => {
     return (
-        <div id='vis-container' ref={refElement} />
-    );
-
+        <D3Component width={window.innerWidth} height={window.innerHeight} data={data} />
+    )
 };
+
+// https://danmarshall.github.io/google-font-to-svg-path/
