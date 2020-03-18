@@ -85,7 +85,7 @@ export const Scale: React.FC = () => {
                 .data(data)
                 .enter()
                 .append('rect')
-                .attr('fill', 'orange')
+                .attr('fill', d => d.color)
                 .attr('width', x.bandwidth)
                 //x(d.name) : undefined | number
                 .attr('x', d => {
