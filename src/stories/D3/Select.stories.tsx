@@ -1,13 +1,13 @@
-import React, { useRef } from 'react';
-import { select, selectAll } from 'd3';
+import React, { useRef, useState } from 'react';
+import { select, selectAll, Selection } from 'd3-selection';
 import { useEffect } from '@storybook/addons';
-
+import { scaleLinear } from 'd3-scale'
 
 export default {
-    title: 'D3/D3',
+    title: 'D3/Select',
 };
 
-export const D3: React.FC = () => {
+export const Select: React.FC = () => {
     const svgRef = useRef<SVGSVGElement | null>(null)
 
     useEffect(() => {
