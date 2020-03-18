@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Axis } from '../D3/Axis.stories'
+import { Axis, Compare } from '../D3/Axis.stories'
 
 export default {
     title: 'Articles/Article',
@@ -57,7 +57,7 @@ export const ArticleSole: FunctionComponent<LogoProp> = ({ textColor = "navy" })
                 {/* <p className="f4 lh-copy pv3 mt0-ns fw5 mid-gray ph1-ns" style={{ whiteSpace: "pre-wrap" }}>
                     {art.replace(/(?:\r\n|\r|\n)/g, ' ')}
                 </p> */}
-                <Axis />
+                <Compare />
             </header>
 
         </article>
