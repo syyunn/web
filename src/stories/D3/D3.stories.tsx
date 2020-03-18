@@ -1,21 +1,36 @@
-import React, { FunctionComponent, useState, useEffect, useRef } from 'react';
-import D3Component from './D3';
-import * as ReactDOM from 'react-dom';
-import data from './data';
+import React, { useRef } from 'react';
+import { select, selectAll } from 'd3';
+import { useEffect } from '@storybook/addons';
 
 
 export default {
     title: 'D3/D3',
 };
 
-type LogoProp = {
-    textColor?: string
-}
+export const D3: React.FC = () => {
+    const svgRef = useRef<SVGSVGElement | null>(null)
 
-export const D3: FunctionComponent<LogoProp> = ({ textColor = "navy" }) => {
+    useEffect(() => {
+        // select(svgRef.current)
+        //     .append('rect') //this is to handle rect comp not with React but with D3
+        //     .attr('width', 100)
+        //     .attr('height', 100)
+        //     .attr('fill', 'blue')
+
+        selectAll('rect')
+            .attr('width', 100)
+            .attr('height', 100)
+            .attr('fill', 'blue')
+            .attr('x', (_, i) => i * 100)
+    })
+
     return (
-        <D3Component width={window.innerWidth} height={window.innerHeight} data={data} />
+        <div>
+            <svg ref={svgRef} >
+                <rect />
+                <rect />
+                <rect />
+            </svg>
+        </div>
     )
-};
-
-// https://danmarshall.github.io/google-font-to-svg-path/
+}
