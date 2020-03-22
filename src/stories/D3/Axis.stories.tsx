@@ -8,6 +8,17 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { STATE } from "../../redux/actionTypes"
 
+import API, { graphqlOperation } from '@aws-amplify/api';
+import awsconfig from '../../aws-exports';
+API.configure(awsconfig);
+
+import { getGovGradCam } from '../../graphqlQueries'
+
+async function getGradCAMImgs(ds_art: string) {
+    console.log("ds_art fetching..", ds_art)
+    const Resolved = await API.graphql(graphqlOperation(getGovGradCam, { ds_art: ds_art }));
+    return Resolved
+}
 
 export default {
     title: 'D3/Axis',
@@ -64,8 +75,8 @@ const data = [
 export const Axis: React.FC = () => {
     const getSTATE = (state: STATE) => state
     const curr_state = useSelector(getSTATE)
-
-    console.log("curr_state at Axis: ", curr_state.select.ds, curr_state.select.article) //about logging default ds value 
+    const ds_art = curr_state.select.ds + "_" + curr_state.select.article
+    getGradCAMImgs(ds_art).then(res => console.log(res.data.getGovGradCAM.image))
 
 
     const dimensions = {
