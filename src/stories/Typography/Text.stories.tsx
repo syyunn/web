@@ -11,7 +11,7 @@ type HeadingProp = {
 
 export const Heading: FunctionComponent<HeadingProp> = ({ text = "Level 1 Heading" }) => {
     return (
-        <h1 className="f2 lh-title navy avenir">
+        <h1 className="f2 fw6 lh-title navy avenir">
             {text}
         </h1>
     )

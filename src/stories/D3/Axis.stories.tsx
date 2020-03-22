@@ -33,42 +33,6 @@ const data = [
         units: 0.98,
     },
     {
-        name: 'Article III: 4',
-        units: 0.87,
-    },
-    {
-        name: 'Article III: 2',
-        units: 0.76,
-    },
-    {
-        name: 'Article III: 1',
-        units: 0.74,
-    },
-    {
-        name: 'Article XI: 1',
-        units: 0.69,
-    },
-    {
-        name: 'Article XX: 1',
-        units: 0.59,
-    },
-    {
-        name: 'Article XX: 3',
-        units: 0.5,
-    },
-    {
-        name: 'Article XX: 9',
-        units: 0.37,
-    },
-    {
-        name: 'Article XX: 10',
-        units: 0.3,
-    },
-    {
-        name: 'Article XX: 11',
-        units: 0.2,
-    },
-    {
         name: 'Article I',
         units: 0.98,
     },
@@ -359,7 +323,7 @@ export const Axis = ({ color = "orange" }: AxisProps) => {
     // getGradCAMImgs(ds_art).then(res => console.log(res.data.getGovGradCAM.image))
 
     const dimensions = {
-        width: 660 * 1.5,
+        width: 660 * 2,
         height: 600,
         marginLeft: 100,
         marginBottom: 100,
@@ -435,11 +399,20 @@ export const Axis = ({ color = "orange" }: AxisProps) => {
                 .data(data)
                 .enter()
                 .append('rect')
+                .attr("class", "bar1")
                 .attr('width', x.bandwidth)
                 .attr('height', d => dimensions.chartHeight - y(d.units))
                 .attr('x', d => x(d.name)!)
                 .attr('y', d => y(d.units))
                 .attr('fill', color)
+                .append('rect')
+                .attr("class", "bar2")
+                .attr('width', x.bandwidth)
+                .attr('height', d => dimensions.chartHeight - y(d.units))
+                .attr('x', d => x(d.name)!)
+                .attr('y', d => y(d.units))
+                .attr('fill', 'black')
+
         }
     }, [selection])
     return (
