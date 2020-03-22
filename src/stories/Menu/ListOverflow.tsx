@@ -21,7 +21,7 @@ export const ListOverflow: React.FC<ListOverflowProps> = props => {
     console.log("curr_state: ", curr_state.select.ds, curr_state.select.article) //about logging default ds value 
 
     return (
-        <nav className="avenir mw10 bb b--silver ph2">
+        <nav className="avenir mw10 bb bt b--silver ph2">
             <div className="nowrap overflow-x-auto">
                 {
                     data.map(item =>
