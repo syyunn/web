@@ -2,7 +2,12 @@ import React, { useRef, useState, useEffect } from 'react'
 import { select, Selection } from 'd3-selection'
 import { axisLeft, axisBottom } from 'd3-axis'
 import { scaleLinear, scaleBand } from 'd3-scale'
-import { max } from 'd3-array'
+
+import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+import { STATE } from "../../redux/actionTypes"
+
 
 export default {
     title: 'D3/Axis',
@@ -57,6 +62,12 @@ const data = [
 ]
 
 export const Axis: React.FC = () => {
+    const getSTATE = (state: STATE) => state
+    const curr_state = useSelector(getSTATE)
+
+    console.log("curr_state at Axis: ", curr_state.select.ds, curr_state.select.article) //about logging default ds value 
+
+
     const dimensions = {
         width: 660,
         height: 600,
