@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { Axis, Compare } from '../D3/Axis.stories'
+import { Image } from '../Images/Image.stories'
 
 export default {
     title: 'Articles/Article',
@@ -65,3 +66,45 @@ export const ArticleSole: FunctionComponent<LogoProp> = ({ textColor = "navy" })
 };
 
 // https://danmarshall.github.io/google-font-to-svg-path/
+
+export const GovGradCAM: FunctionComponent<LogoProp> = ({ textColor = "navy" }) => {
+    var text = 'WT/DS161/R\n                                                                                             WT/DS169/R\n                                                                                                    Page 3\nII.      FACTUAL ASPECTS\n1. Product coverage of the dispute\n8.       The case before the Panel concerned measures maintained by Korea on imports of beef of the\nfollowing tariff description4: 02.01-10: meat of bovine animals (fresh or chilled/carcasses and half-\ncarcasses); 02.01-20: meat of bovine animals (fresh or chilled/cuts with bone in); 02.01-30: meat of\nbovine animals (fresh or chilled/boneless); 02.02-10: meat of bovine animals (frozen/carcasses and\nhalf-carcasses): 02.02-20: meat of bovine animals (frozen/cuts with bone in); 02.02-30: meat of\nbovine animals (frozen/boneless);\n2. Korea\'s Schedule of Concessions\n9.       Korea\'s Schedule of tariff concessions (LX) provides for the entry of fresh, chilled and frozen\nbeef with market access opportunities rising from 123,000 tonnes in 1995 to 225.000 tonnes in 2000.\n'
+    var art = 'Article III\nNational Treatment on Internal Taxation and Regulation\n4. The products of the territory of any contracting party imported into the territory of any other contracting party shall not be subject, directly or indirectly, to internal taxes or other internal charges of any kind in excess of those applied, directly or indirectly, to like domestic products. Moreover, no contracting party shall otherwise apply internal taxes or other internal charges to imported or domestic products in a manner contrary to the principles set forth in paragraph 1.'
+    return (
+        <article className="cf mh4 bb b--silver">
+            <h1 className="f2 lh-title fw9 mb3 mt0 pt3 tc">
+                DS2 : Korea - Various Measures on Beef
+            </h1>
+            <header className="fn fl-ns w-100-ns pr4-ns mb3">
+                <Image />
+            </header>
+            <h1 className="f2 lh-title fw9 mb3 mt0 pt3 tc">
+                Model Prediction on Invokable Articles For DS 2
+            </h1>
+            <header className="fn fl-ns w-50-ns pr4-ns ph4-ns">
+                <Axis />
+            </header>
+        </article>
+    )
+};
+
+export const ArticleGradCAM: FunctionComponent<LogoProp> = ({ textColor = "navy" }) => {
+    var text = 'WT/DS161/R\n                                                                                             WT/DS169/R\n                                                                                                    Page 3\nII.      FACTUAL ASPECTS\n1. Product coverage of the dispute\n8.       The case before the Panel concerned measures maintained by Korea on imports of beef of the\nfollowing tariff description4: 02.01-10: meat of bovine animals (fresh or chilled/carcasses and half-\ncarcasses); 02.01-20: meat of bovine animals (fresh or chilled/cuts with bone in); 02.01-30: meat of\nbovine animals (fresh or chilled/boneless); 02.02-10: meat of bovine animals (frozen/carcasses and\nhalf-carcasses): 02.02-20: meat of bovine animals (frozen/cuts with bone in); 02.02-30: meat of\nbovine animals (frozen/boneless);\n2. Korea\'s Schedule of Concessions\n9.       Korea\'s Schedule of tariff concessions (LX) provides for the entry of fresh, chilled and frozen\nbeef with market access opportunities rising from 123,000 tonnes in 1995 to 225.000 tonnes in 2000.\n'
+    var art = 'Article III\nNational Treatment on Internal Taxation and Regulation\n4. The products of the territory of any contracting party imported into the territory of any other contracting party shall not be subject, directly or indirectly, to internal taxes or other internal charges of any kind in excess of those applied, directly or indirectly, to like domestic products. Moreover, no contracting party shall otherwise apply internal taxes or other internal charges to imported or domestic products in a manner contrary to the principles set forth in paragraph 1.'
+    return (
+        <article className="cf mh4 bb b--silver">
+            <h1 className="f2 lh-title fw9 mb3 mt0 pt3 tc">
+                Model Activation of Article III:4 on DS 2
+            </h1>
+            <header className="fn fl-ns w-100-ns pr4-ns">
+                <Image />
+            </header>
+            <h1 className="f2 lh-title fw9 mb3 mt0 pt3 tc">
+                Model Prediction vs Actual Citation on Article III: 4
+            </h1>
+            <header className="fn fl-ns w-50-ns pr4-ns ph4-ns">
+                <Compare />
+            </header>
+        </article>
+    )
+};
