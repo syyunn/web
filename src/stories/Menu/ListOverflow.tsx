@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
 
-import { selectDS } from "../../redux/actions";
 import { STATE } from "../../redux/actionTypes"
 
 type ListOverflowProps = {
@@ -18,10 +17,10 @@ export const ListOverflow: React.FC<ListOverflowProps> = props => {
     const getSTATE = (state: STATE) => state
     const curr_state = useSelector(getSTATE)
 
-    console.log("curr_state: ", curr_state.select.ds, curr_state.select.article) //about logging default ds value 
+    // console.log("curr_state: ", curr_state.select.ds, curr_state.select.article) //about logging default ds value 
 
     return (
-        <nav className="avenir mw10 bb b--silver ph2">
+        <nav className="avenir mw10 bb bt b--silver ph2">
             <div className="nowrap overflow-x-auto">
                 {
                     data.map(item =>
@@ -46,5 +45,5 @@ export const ListOverflow: React.FC<ListOverflowProps> = props => {
 
 export default connect(
     null,
-    { selectDS }
+    null,
 )(ListOverflow);
