@@ -10,19 +10,22 @@ import { STATE } from "../../redux/actionTypes"
 
 import API, { graphqlOperation } from '@aws-amplify/api';
 import awsconfig from '../../aws-exports';
-API.configure(awsconfig);
-
 import { getGovGradCam } from '../../graphqlQueries'
 
-async function getGradCAMImgs(ds_art: string) {
-    console.log("ds_art fetching..", ds_art)
-    const Resolved = await API.graphql(graphqlOperation(getGovGradCam, { ds_art: ds_art }));
-    return Resolved
-}
+API.configure(awsconfig);
+
+
+// async function getGradCAMImgs(ds_art: string) {
+//     console.log("ds_art fetching..", ds_art)
+//     const Resolved = await API.graphql(graphqlOperation(getGovGradCam, { ds_art: ds_art }));
+//     return Resolved
+// }
 
 export default {
     title: 'D3/Axis',
 }
+
+
 
 const data = [
     {
@@ -66,18 +69,294 @@ const data = [
         units: 0.2,
     },
     {
-        name: 'Article XX: 12',
-        units: 0.1,
+        name: 'Article I',
+        units: 0.98,
     },
-
+    {
+        name: 'Article III: 4',
+        units: 0.87,
+    },
+    {
+        name: 'Article III: 2',
+        units: 0.76,
+    },
+    {
+        name: 'Article III: 1',
+        units: 0.74,
+    },
+    {
+        name: 'Article XI: 1',
+        units: 0.69,
+    },
+    {
+        name: 'Article XX: 1',
+        units: 0.59,
+    },
+    {
+        name: 'Article XX: 3',
+        units: 0.5,
+    },
+    {
+        name: 'Article XX: 9',
+        units: 0.37,
+    },
+    {
+        name: 'Article XX: 10',
+        units: 0.3,
+    },
+    {
+        name: 'Article XX: 11',
+        units: 0.2,
+    },
+    {
+        name: 'Article I',
+        units: 0.98,
+    },
+    {
+        name: 'Article III: 4',
+        units: 0.87,
+    },
+    {
+        name: 'Article III: 2',
+        units: 0.76,
+    },
+    {
+        name: 'Article III: 1',
+        units: 0.74,
+    },
+    {
+        name: 'Article XI: 1',
+        units: 0.69,
+    },
+    {
+        name: 'Article XX: 1',
+        units: 0.59,
+    },
+    {
+        name: 'Article XX: 3',
+        units: 0.5,
+    },
+    {
+        name: 'Article XX: 9',
+        units: 0.37,
+    },
+    {
+        name: 'Article XX: 10',
+        units: 0.3,
+    },
+    {
+        name: 'Article XX: 11',
+        units: 0.2,
+    },
+    {
+        name: 'Article I',
+        units: 0.98,
+    },
+    {
+        name: 'Article III: 4',
+        units: 0.87,
+    },
+    {
+        name: 'Article III: 2',
+        units: 0.76,
+    },
+    {
+        name: 'Article III: 1',
+        units: 0.74,
+    },
+    {
+        name: 'Article XI: 1',
+        units: 0.69,
+    },
+    {
+        name: 'Article XX: 1',
+        units: 0.59,
+    },
+    {
+        name: 'Article XX: 3',
+        units: 0.5,
+    },
+    {
+        name: 'Article XX: 9',
+        units: 0.37,
+    },
+    {
+        name: 'Article XX: 10',
+        units: 0.3,
+    },
+    {
+        name: 'Article XX: 11',
+        units: 0.2,
+    },
+    {
+        name: 'Article I',
+        units: 0.98,
+    },
+    {
+        name: 'Article III: 4',
+        units: 0.87,
+    },
+    {
+        name: 'Article III: 2',
+        units: 0.76,
+    },
+    {
+        name: 'Article III: 1',
+        units: 0.74,
+    },
+    {
+        name: 'Article XI: 1',
+        units: 0.69,
+    },
+    {
+        name: 'Article XX: 1',
+        units: 0.59,
+    },
+    {
+        name: 'Article XX: 3',
+        units: 0.5,
+    },
+    {
+        name: 'Article XX: 9',
+        units: 0.37,
+    },
+    {
+        name: 'Article XX: 10',
+        units: 0.3,
+    },
+    {
+        name: 'Article XX: 11',
+        units: 0.2,
+    },
+    {
+        name: 'Article I',
+        units: 0.98,
+    },
+    {
+        name: 'Article III: 4',
+        units: 0.87,
+    },
+    {
+        name: 'Article III: 2',
+        units: 0.76,
+    },
+    {
+        name: 'Article III: 1',
+        units: 0.74,
+    },
+    {
+        name: 'Article XI: 1',
+        units: 0.69,
+    },
+    {
+        name: 'Article XX: 1',
+        units: 0.59,
+    },
+    {
+        name: 'Article XX: 3',
+        units: 0.5,
+    },
+    {
+        name: 'Article XX: 9',
+        units: 0.37,
+    },
+    {
+        name: 'Article XX: 10',
+        units: 0.3,
+    },
+    {
+        name: 'Article XX: 11',
+        units: 0.2,
+    },
+    {
+        name: 'Article I',
+        units: 0.98,
+    },
+    {
+        name: 'Article III: 4',
+        units: 0.87,
+    },
+    {
+        name: 'Article III: 22',
+        units: 0.76,
+    },
+    {
+        name: 'Article III: 112',
+        units: 0.74,
+    },
+    {
+        name: 'Article XI: 112',
+        units: 0.69,
+    },
+    {
+        name: 'Article XX: 12',
+        units: 0.59,
+    },
+    {
+        name: 'Article XX: 32',
+        units: 0.5,
+    },
+    {
+        name: 'Article XX: 92',
+        units: 0.37,
+    },
+    {
+        name: 'Article XX: 102',
+        units: 0.3,
+    },
+    {
+        name: 'Article XX: 111',
+        units: 0.2,
+    },
+    {
+        name: 'Article I1',
+        units: 0.98,
+    },
+    {
+        name: 'Article III: 41',
+        units: 0.87,
+    },
+    {
+        name: 'Article III: 21',
+        units: 0.76,
+    },
+    {
+        name: 'Article III: 11',
+        units: 0.74,
+    },
+    {
+        name: 'Article XI: 11',
+        units: 0.69,
+    },
+    {
+        name: 'Article XX: 11',
+        units: 0.59,
+    },
+    {
+        name: 'Article XX: 31',
+        units: 0.5,
+    },
+    {
+        name: 'Article XX: 91',
+        units: 0.37,
+    },
+    {
+        name: 'Article XX: 101',
+        units: 0.3,
+    },
+    {
+        name: 'Article XX: 111',
+        units: 0.2,
+    },
 ]
 
-export const Axis: React.FC = () => {
-    const getSTATE = (state: STATE) => state
-    const curr_state = useSelector(getSTATE)
-    const ds_art = curr_state.select.ds + "_" + curr_state.select.article
-    getGradCAMImgs(ds_art).then(res => console.log(res.data.getGovGradCAM.image))
+type AxisProps = { color: string }
 
+export const Axis = ({ color = "orange" }: AxisProps) => {
+    // const getSTATE = (state: STATE) => state
+    // const curr_state = useSelector(getSTATE)
+    // const ds_art = curr_state.select.ds + "_" + curr_state.select.article
+    // getGradCAMImgs(ds_art).then(res => console.log(res.data.getGovGradCAM.image))
 
     const dimensions = {
         width: 660,
@@ -160,7 +439,7 @@ export const Axis: React.FC = () => {
                 .attr('height', d => dimensions.chartHeight - y(d.units))
                 .attr('x', d => x(d.name)!)
                 .attr('y', d => y(d.units))
-                .attr('fill', 'orange')
+                .attr('fill', color)
         }
     }, [selection])
     return (
@@ -268,3 +547,6 @@ export const Compare: React.FC = () => {
         <svg ref={svgRef} width={dimensions.width} height={dimensions.height} />
     )
 }
+
+export const AxisTest = () => Axis({ color: "orange" })
+export const AxisTrain = () => Axis({ color: "gray" })

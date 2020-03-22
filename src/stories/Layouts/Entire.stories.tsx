@@ -22,4 +22,4 @@ export const EntireScreen = ({ components = null }: EntireScreenProps) => {
     );
 };
 
-export const Entire = () => EntireScreen({ components: [NavigationHeaderWithTextLogoWithoutBorderBottomLine, NavHeaderBreadCrums, ListOverflowDS, Invokability, ListOverflowArticle, Comparison, GovGradCAM, ArticleGradCAM] });
+export const Entire = () => EntireScreen({ components: [NavigationHeaderWithTextLogoWithoutBorderBottomLine, NavHeaderBreadCrums, ListOverflowDS, Invokability, ListOverflowArticle, GovGradCAM, ArticleGradCAM] });
