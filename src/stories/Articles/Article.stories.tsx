@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { Axis, Compare } from '../D3/Axis.stories'
 import { Image } from '../Images/Image.stories'
+import { PrevNextButton, Pagination } from '../Buttons/Nav.stories'
 
 export default {
     title: 'Articles/Article',
@@ -75,8 +76,14 @@ export const GovGradCAM: FunctionComponent<LogoProp> = ({ textColor = "navy" }) 
             <h1 className="f2 lh-title fw9 mb3 mt0 pt3 tc">
                 DS2 : Korea - Various Measures on Beef
             </h1>
-            <header className="fn fl-ns w-100-ns pr4-ns mb3">
-                <Image />
+            <header className="fn fl-ns pr4-ns mb3">
+                <div className="fl-ns w-90-ns mb3">
+                    <Image />
+                </div>
+                <div className="fl-ns w-10-ns pr4-ns mt5 items-center">
+                    <Pagination />
+                    <PrevNextButton />
+                </div>
             </header>
             <h1 className="f2 lh-title fw9 mb3 mt0 pt3 tc">
                 Model Prediction on Invokable Articles For DS 2
