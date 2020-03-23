@@ -24,28 +24,8 @@ export default {
     title: 'D3/GroupedBarChart',
 }
 
-const data = [
-    {
-        name: 'Article I',
-        pred: 0.98,
-        label: 1
-    },
-    {
-        name: 'Article II',
-        pred: 0.5,
-        label: 0.1
-    },
-    {
-        name: 'Article III',
-        pred: 0.5,
-        label: 0.25
-    },
-    {
-        name: 'Article IV',
-        pred: 0.5,
-        label: 0.25
-    },
-]
+const data = [{ 'name': 'Article I', 'pred': 0.9509826, 'label': 0.0 }, { 'name': 'Article II', 'pred': 0.9472938, 'label': 0.0 }, { 'name': 'Article XI', 'pred': 0.9252749, 'label': 1.0 }, { 'name': 'Article III:4', 'pred': 0.9197453, 'label': 0.0 }, { 'name': 'Article I:1', 'pred': 0.91217214, 'label': 0.0 }, { 'name': 'Article XIII', 'pred': 0.871275, 'label': 1.0 }, { 'name': 'Article XXIII:1', 'pred': 0.4944687, 'label': 0.0 }, { 'name': 'Article XVI', 'pred': 0.4297645, 'label': 0.0 }, { 'name': 'Article XIX:1', 'pred': 0.15072678, 'label': 0.0 }, { 'name': 'Article XXIII', 'pred': 0.112864695, 'label': 0.0 }, { 'name': 'Article XXIII:1(b)', 'pred': 0.08849422, 'label': 0.0 }, { 'name': 'Article XI:1', 'pred': 0.06774592, 'label': 0.0 }, { 'name': 'Article XIX', 'pred': 0.067383535, 'label': 0.0 }, { 'name': 'Article XXVIII', 'pred': 0.061205868, 'label': 0.0 }, { 'name': 'Article XXII:1', 'pred': 0.029826483, 'label': 0.0 }, { 'name': 'Article VI', 'pred': 0.026944472, 'label': 0.0 }, { 'name': 'Article III:2', 'pred': 0.019636044, 'label': 0.0 }, { 'name': 'Article XX', 'pred': 0.014175044, 'label': 0.0 }, { 'name': 'Article VIII', 'pred': 0.009276686, 'label': 0.0 }, { 'name': 'Article X', 'pred': 0.008591365, 'label': 0.0 }, { 'name': 'Article III:1', 'pred': 0.0068693548, 'label': 0.0 }, { 'name': 'Article XIII:1', 'pred': 0.0051824506, 'label': 0.0 }, { 'name': 'Article XIII:2', 'pred': 0.005178307, 'label': 0.0 }, { 'name': 'Article X:3(a)', 'pred': 0.004808769, 'label': 0.0 }, { 'name': 'Article VII', 'pred': 0.0025049066, 'label': 0.0 }, { 'name': 'Article II:1(b)', 'pred': 0.0021809207, 'label': 0.0 }, { 'name': 'Article XVII:1', 'pred': 0.0019983458, 'label': 0.0 }, { 'name': 'Article XIX:2', 'pred': 0.001985235, 'label': 0.0 }, { 'name': 'Article X:3', 'pred': 0.0018678593, 'label': 0.0 }, { 'name': 'Article X:1', 'pred': 0.0016513811, 'label': 0.0 }, { 'name': 'Article XXIV', 'pred': 0.0016507934, 'label': 0.0 }, { 'name': 'Article II:1(a)', 'pred': 0.0007501796, 'label': 0.0 }, { 'name': 'Article VIII:1', 'pred': 0.0006618214, 'label': 0.0 }, { 'name': 'Article XXIII:1(a)', 'pred': 0.00062386645, 'label': 0.0 }, { 'name': 'Article XXII', 'pred': 0.000505111, 'label': 0.0 }, { 'name': 'Article VII:1', 'pred': 0.00035969014, 'label': 0.0 }, { 'name': 'Article VIII:4', 'pred': 0.00024998002, 'label': 0.0 }, { 'name': 'Article XVI:1', 'pred': 0.00017839645, 'label': 0.0 }, { 'name': 'Article VII:2', 'pred': 0.00014606396, 'label': 0.0 }, { 'name': 'Article II:3', 'pred': 7.986965e-05, 'label': 0.0 }, { 'name': 'Article VI:1', 'pred': 6.906774e-05, 'label': 0.0 }, { 'name': 'Article VI:2', 'pred': 3.699616e-05, 'label': 0.0 }, { 'name': 'Article VI:2(b)', 'pred': 3.699616e-05, 'label': 0.0 }, { 'name': 'Article VI:6', 'pred': 3.6483514e-05, 'label': 0.0 }, { 'name': 'Article XIX:3', 'pred': 6.510771e-06, 'label': 0.0 }, { 'name': 'Article IX', 'pred': 5.9830154e-06, 'label': 0.0 }, { 'name': 'Article IV', 'pred': 2.5794288e-06, 'label': 0.0 }, { 'name': 'Article XVI:4', 'pred': 2.2755637e-06, 'label': 0.0 }, { 'name': 'Article XV', 'pred': 2.256142e-06, 'label': 0.0 }, { 'name': 'Article V:7', 'pred': 1.6120748e-06, 'label': 0.0 }, { 'name': 'Article XVII:1(c)', 'pred': 1.2437589e-06, 'label': 0.0 }, { 'name': 'Article XVIII:10', 'pred': 1.1088734e-06, 'label': 0.0 }, { 'name': 'Article XIII:3(b)', 'pred': 9.719627e-07, 'label': 0.0 }, { 'name': 'Article V:2', 'pred': 9.27089e-07, 'label': 0.0 }, { 'name': 'Article III:7', 'pred': 8.505987e-07, 'label': 0.0 }, { 'name': 'Article VI:5(a)', 'pred': 8.087172e-07, 'label': 0.0 }, { 'name': 'Article XXI', 'pred': 5.975666e-07, 'label': 0.0 }, { 'name': 'Article XXIV:6', 'pred': 3.8946015e-07, 'label': 0.0 }, { 'name': 'Article VIII:3', 'pred': 3.7054963e-07, 'label': 0.0 }, { 'name': 'Article V:3', 'pred': 3.578778e-07, 'label': 0.0 }, { 'name': 'Article XVIII', 'pred': 2.6343753e-07, 'label': 0.0 }, { 'name': 'Article XXIV:5(b)', 'pred': 1.9286078e-07, 'label': 0.0 }, { 'name': 'Article V:4', 'pred': 1.1659064e-07, 'label': 0.0 }, { 'name': 'Article V', 'pred': 1.654514e-08, 'label': 0.0 }, { 'name': 'Article V:5', 'pred': 7.2156667e-09, 'label': 0.0 }]
+
 
 type AxisProps = { color: string }
 
@@ -124,7 +104,7 @@ export const GBC = ({ color = "orange" }: AxisProps) => {
                 .attr('height', d => dimensions.chartHeight - y(d.pred))
                 .attr('x', d => x(d.name)!)
                 .attr('y', d => y(d.pred))
-                .attr('fill', color)
+                .attr('fill', '#ff8c00')
 
             const charts_label = selection
                 .append('g')
@@ -137,7 +117,7 @@ export const GBC = ({ color = "orange" }: AxisProps) => {
                 .attr('height', d => dimensions.chartHeight - y(d.label))
                 .attr('x', d => x(d.name)!)
                 .attr('y', d => y(d.label))
-                .attr('fill', 'gray')
+                .attr('fill', '#98abc5')
         }
     }, [selection])
     return (
