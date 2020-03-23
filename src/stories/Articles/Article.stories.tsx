@@ -80,7 +80,7 @@ export const GovGradCAM: FunctionComponent<LogoProp> = ({ textColor = "navy" }) 
                 Factual : DS2
             </h1>
             <h1 className="f5 lh-title fw6 ml2">
-                *Brighter color means that the model thinks the corresponding word is more important for the case to be regarded as citable.
+                *Brighter color means that the model thinks the corresponding word is more important for the case to be predicted as invokable.
             </h1>
             <header className="fn fl-ns pr4-ns">
                 <div className="fl-ns w-90-ns">
@@ -104,7 +104,7 @@ export const ArticleGradCAM: FunctionComponent<LogoProp> = ({ textColor = "navy"
                 Article III: 4
             </h1>
             <h1 className="f5 lh-title fw6 ml2">
-                *Brighter color means that the model thinks the corresponding word is more important for the case to be regarded as citable.
+                *Brighter color means that the model thinks the corresponding word is more important for the case to be predicted as invokable.
             </h1>
             <header className="fn fl-ns pr4-ns mb3">
                 <div className="fl-ns w-90-ns mb3">
