@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import { select, Selection } from 'd3-selection'
 import { axisLeft, axisBottom } from 'd3-axis'
 import { scaleLinear, scaleBand } from 'd3-scale'
+import { event } from 'd3'
 
 import { connect } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,6 +12,8 @@ import { STATE } from "../../redux/actionTypes"
 import API, { graphqlOperation } from '@aws-amplify/api';
 import awsconfig from '../../aws-exports';
 import { getGovGradCam } from '../../graphqlQueries'
+
+import './Tooltip.css';
 
 API.configure(awsconfig);
 
@@ -96,6 +99,7 @@ export const GBC = ({ color = "orange" }: AxisProps) => {
             const charts_pred = selection
                 .append('g')
                 .attr('transform', `translate(${marginLeft + unit * 1.5}, 0)`)
+                .attr('class', 'hoverPred')
                 .selectAll('rect')
                 .data(data)
                 .enter()
@@ -105,6 +109,24 @@ export const GBC = ({ color = "orange" }: AxisProps) => {
                 .attr('x', d => x(d.name)!)
                 .attr('y', d => y(d.pred))
                 .attr('fill', '#ff8c00')
+                .on("mouseover", d => {
+                    div.style("display", "inline")
+                    div.text(d.pred)
+                }
+                )
+                .on("mousemove", () => {
+                    div.style("left", event.pageX - 12 + "px")
+                    div.style("top", event.pageY - 12 + "px")
+                })
+                .on("mouseout", () => {
+                    div.style("display", "none")
+                })
+
+
+            var div = select("body")
+                .append("div")
+                .attr("class", "tooltip")
+                .style("display", "none")
 
             const charts_label = selection
                 .append('g')
@@ -118,6 +140,39 @@ export const GBC = ({ color = "orange" }: AxisProps) => {
                 .attr('x', d => x(d.name)!)
                 .attr('y', d => y(d.label))
                 .attr('fill', '#98abc5')
+                .on("mouseover", d => {
+                    div.style("display", "inline")
+                    div.text(d.label)
+                }
+                )
+                .on("mousemove", () => {
+                    div.style("left", event.pageX - 12 + "px")
+                    div.style("top", event.pageY - 12 + "px")
+                })
+                .on("mouseout", () => {
+                    div.style("display", "none")
+                })
+
+
+
+
+            // function mouseover(d: Object) {
+            //     div.style("display", "inline");
+            //     div.text(d.pred)
+            // }
+
+            // const hoverBar = selection
+            //     .selectAll(".hoverPred")
+            //     .data(data)
+            //     .enter()
+            //     .append('text')
+            //     .text(d => d.pred)
+
+            // function mouseover(d: Object) {
+            //     selection.style("display", "inline");
+            //     div.text(d.Stage)
+            // }
+
         }
     }, [selection])
     return (
