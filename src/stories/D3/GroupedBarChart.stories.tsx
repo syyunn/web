@@ -105,13 +105,14 @@ export const GBC = ({ color = "orange" }: AxisProps) => {
                 .enter()
                 .append('rect')
                 .attr('width', unit)
-                .attr('height', d => dimensions.chartHeight - y(d.pred))
+                .attr('height', d => d.pred != 0 ? dimensions.chartHeight - y(d.pred) : dimensions.chartHeight - y(0.025))
                 .attr('x', d => x(d.name)!)
-                .attr('y', d => y(d.pred))
+                .attr('y', d => d.pred != 0 ? y(d.pred) : y(0.025))
                 .attr('fill', '#ff8c00')
+                .attr('fill-opacity', d => d.pred != 0 ? 1 : 0.1)
                 .on("mouseover", d => {
                     div.style("display", "inline")
-                    div.text(d.pred)
+                    div.text(d.pred * 100 + "%")
                 }
                 )
                 .on("mousemove", () => {
@@ -136,13 +137,14 @@ export const GBC = ({ color = "orange" }: AxisProps) => {
                 .enter()
                 .append('rect')
                 .attr('width', unit)
-                .attr('height', d => dimensions.chartHeight - y(d.label))
+                .attr('height', d => d.label != 0 ? dimensions.chartHeight - y(d.label) : dimensions.chartHeight - y(0.025))
                 .attr('x', d => x(d.name)!)
-                .attr('y', d => y(d.label))
+                .attr('y', d => d.label != 0 ? y(d.label) : y(0.025))
                 .attr('fill', '#98abc5')
+                .attr('fill-opacity', d => d.label != 0 ? 1 : 0.1)
                 .on("mouseover", d => {
                     div.style("display", "inline")
-                    div.text(d.label)
+                    div.text(d.label * 100 + "%")
                 }
                 )
                 .on("mousemove", () => {
@@ -152,6 +154,22 @@ export const GBC = ({ color = "orange" }: AxisProps) => {
                 .on("mouseout", () => {
                     div.style("display", "none")
                 })
+
+            const charts_text = selection
+                .append('g')
+                .attr('transform', `translate(${marginLeft + unit * 3}, ${-1 * unit * 0.5})`)
+                .selectAll('rect')
+                .data(data)
+                .enter()
+                .append("text")
+                .text(d => d.label < 0.0000001 ? d.label * 100 + "" : null)
+                .attr("text-anchor", "middle")
+                .attr('x', d => x(d.name)!)
+                .attr('y', d => y(d.label))
+                .attr("font-family", "sans-serif")
+                .attr("font-size", "11px")
+                .attr("font-color", "black")
+            // .attr("writing-mode", "sideways-lr")
 
 
 
