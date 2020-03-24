@@ -24,7 +24,8 @@ export default {
 type AxisProps = { color: string }
 
 export const GBC = ({ color = "orange" }: AxisProps) => {
-    const [data, setData] = useState([{ name: 'Article I', pred: 1, label: 0.0 }]);
+    // const [data, setData] = useState([{ name: 'Article I', pred: 1, label: 0.0 }]);
+    const [data, setData] = useState([{ "name": 'Article I', "pred": 1, "label": 0.0 }]);
 
     const numData = data.length
     const unit = 20
@@ -67,7 +68,7 @@ export const GBC = ({ color = "orange" }: AxisProps) => {
     useEffect(() => {
         async function updateData(ds: number) {
             const result = await API.graphql(graphqlOperation(getInvokabilties, { ds: ds }));
-            const newData = [JSON.parse(result.data.getInvokabilties.scores[0])]
+            const newData = JSON.parse(result.data.getInvokabilties.scores)
             if (data !== newData) {
                 console.log(data, newData)
                 setData(newData)
