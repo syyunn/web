@@ -127,15 +127,9 @@ export const Invokability: FunctionComponent<LogoProp> = ({ textColor = "navy" }
             <h1 className="f2 lh-title fw7 mb3 mt3 pt3 tc avenir">
                 Model Prediction on Invokable Articles For DS 2
             </h1>
-            <h1 className="f5 lh-title fw7 mb3 mt0 ml5 avenir">
-                *orange represents the test cases. It shows the model's classification power since the model has never seen the true label of these cases while on training.
-            </h1>
             <header className="fl-ns fn w-100-ns">
                 <GBC color="orange" />
             </header>
-            <h1 className="f5 lh-title fw7 mb3 mt0 ml5 avenir">
-                *gray represents the train cases. It doesn't show the model's classification power since the model has already seen the true label of these cases while on training.
-            </h1>
             <header className="w-50-ns">
                 <GBC color="orange" />
             </header>
