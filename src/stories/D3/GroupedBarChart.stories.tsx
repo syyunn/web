@@ -17,15 +17,15 @@ import './Tooltip.css';
 
 API.configure(awsconfig);
 
-var data = [{ name: 'Article I', pred: 1, label: 0.0 }]
+// var data = [{ name: 'Article I', pred: 1, label: 0.0 }]
 
-async function getInvokabilities(ds: number) {
-    const result = await API.graphql(graphqlOperation(getInvokabilties, { ds: ds }));
-    data = [JSON.parse(result.data.getInvokabilties.scores[0])]
-    console.log("data update", data)
+// async function getInvokabilities(ds: number) {
+//     const result = await API.graphql(graphqlOperation(getInvokabilties, { ds: ds }));
+//     data = [JSON.parse(result.data.getInvokabilties.scores[0])]
+//     console.log("data update", data)
 
-    return [JSON.parse(result.data.getInvokabilties.scores[0])]
-}
+//     return [JSON.parse(result.data.getInvokabilties.scores[0])]
+// }
 
 export default {
     title: 'D3/GroupedBarChart',
@@ -38,13 +38,13 @@ const label = ["pred", "label"]
 type AxisProps = { color: string }
 
 export const GBC = ({ color = "orange" }: AxisProps) => {
+    const [data, setData] = useState([{ name: 'Article I', pred: 1, label: 0.0 }]);
 
     const colors = ["steelblue", "lightblue"]
     // getInvokabilities(ds).then(res => console.log(JSON.parse(res.data.getInvokabilties.scores[0])))
     const getSTATE = (state: STATE) => state
     const curr_state = useSelector(getSTATE)
     const ds = parseInt(curr_state.select.ds)
-    getInvokabilities(ds)
 
     const unit = 20
     const numData = data.length
@@ -54,7 +54,7 @@ export const GBC = ({ color = "orange" }: AxisProps) => {
     const marginTitle = unit * 4
 
     const dimensions = {
-        svgWidth: marginLeft + 100 * numData,
+        svgWidth: Math.max(marginLeft + 100 * numData, 6600),
         svgHeight: 600,
         chartHeight: 500,
         chartWidth: 500,
@@ -78,6 +78,14 @@ export const GBC = ({ color = "orange" }: AxisProps) => {
     >>(null)
 
     useEffect(() => {
+        async function updateData(ds: number) {
+            const result = await API.graphql(graphqlOperation(getInvokabilties, { ds: ds }));
+            const newData = [JSON.parse(result.data.getInvokabilties.scores[0])]
+            setData(newData)
+        }
+
+        updateData(ds)
+
         console.log("dataEffect", data)
         if (!selection) {
             setSelection(select(svgRef.current))
@@ -86,7 +94,7 @@ export const GBC = ({ color = "orange" }: AxisProps) => {
                 .selectAll("g > *").remove()
             const x = scaleBand()
                 .domain(data.map(d => d.name))
-                .range([0, dimensions.svgWidth - marginLeft])
+                .range([0, 100 * numData])
 
             const xAxis = axisBottom(x)
 
@@ -224,7 +232,7 @@ export const GBC = ({ color = "orange" }: AxisProps) => {
                 .attr("text-anchor", "start")
                 .text("- test cases represent the model's classification power since the model has never seen the true label of the cases while on training");
         }
-    }, [selection, data])
+    }, [selection, ds, data])
 
     return (
         <svg ref={svgRef} width={dimensions.svgWidth} height={dimensions.svgHeight} />
