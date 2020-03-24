@@ -45,6 +45,7 @@ export const GBC = ({ color = "orange" }: AxisProps) => {
     const marginLeft = unit * 5
     const marginBottom = unit * 5
     const marginTop = unit * 4
+    const marginTitle = unit * 4
 
     const dimensions = {
         svgWidth: marginLeft + 100 * numData,
@@ -64,7 +65,7 @@ export const GBC = ({ color = "orange" }: AxisProps) => {
 
     const y = scaleLinear()
         .domain([0, 1]) // y-axis label's range
-        .range([dimensions.svgHeight - marginBottom, marginTop]) // since the prior one is bigger it runs from btm to up for 0 to 1 // default is 0 to 1 for up to btm
+        .range([dimensions.svgHeight - marginBottom, marginTop + marginTitle]) // since the prior one is bigger it runs from btm to up for 0 to 1 // default is 0 to 1 for up to btm
 
     const x = scaleBand()
         .domain(data.map(d => d.name))
@@ -167,7 +168,7 @@ export const GBC = ({ color = "orange" }: AxisProps) => {
                 .append("rect")
                 .attr("x", marginLeft)
                 .attr("y", function (d, i) {
-                    return unit * 0.5 + i * unit * 1.5;
+                    return unit * 0.5 + i * unit * 1.5 + marginTitle - unit * 0.75;
                 })
                 .attr("width", 20)
                 .attr("height", 20)
@@ -178,7 +179,7 @@ export const GBC = ({ color = "orange" }: AxisProps) => {
             const legend_txts = legend
                 .append("text")
                 .attr("y", function (d, i) {
-                    return unit * 1.25 + i * unit * 1.5;
+                    return unit * 1.25 + i * unit * 1.5 + marginTitle - unit * 0.75;
                 })
                 .attr("x", marginLeft + unit * 1.25)
                 .attr("text-anchor", "start")
@@ -186,6 +187,33 @@ export const GBC = ({ color = "orange" }: AxisProps) => {
                     return label[i];
                 });
 
+            const title = selection
+                .selectAll("title")
+                .enter()
+
+            const title_text = legend
+                .append("text")
+                .attr("font-size", 25)
+                .attr("font-family", "avenir")
+                .attr("font-weight", 600)
+                .attr("y", unit)
+                .attr("x", marginLeft - unit)
+                .attr("text-anchor", "start")
+                .text("Test Cases");
+
+            const subtitle = selection
+                .selectAll("subtitle")
+                .enter()
+
+            const subtitle_text = legend
+                .append("text")
+                .attr("font-size", 20)
+                .attr("font-family", "avenir")
+                .attr("fontWeight", 500)
+                .attr("y", unit * 2.5)
+                .attr("x", marginLeft - unit)
+                .attr("text-anchor", "start")
+                .text("- test cases represent the model's classification power since the model has never seen the true label of the cases while on training");
             // const charts_text = selection
             //     .append('g')
             //     .attr('transform', `translate(${marginLeft + unit * 3}, ${-1 * unit * 0.5})`)
