@@ -76,7 +76,6 @@ export const GBC = ({ color = "orange" }: AxisProps) => {
         null,
         undefined
     >>(null)
-    useEffect(() => { getInvokabilities(ds) }, [ds])
 
     useEffect(() => {
         console.log("dataEffect", data)
