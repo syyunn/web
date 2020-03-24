@@ -5,3 +5,11 @@ export const getGovGradCam = `query GetGovGradCam($ds_art: String!) {
     }
   }
   `;
+
+export const getInvokabilties = `query GetInvokabilties($ds: Int!) {
+    getInvokabilties(ds: $ds) {
+      ds
+      scores
+    }
+  }
+  `;
