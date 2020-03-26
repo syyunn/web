@@ -11,7 +11,7 @@ import { STATE } from "../../redux/actionTypes"
 
 import API, { graphqlOperation } from '@aws-amplify/api';
 import awsconfig from '../../aws-exports';
-import { getInvokabilties } from '../../graphqlQueries'
+import { getInvokabilities } from '../../graphqlQueries'
 
 import './Tooltip.css';
 
@@ -21,10 +21,14 @@ export default {
     title: 'D3/GroupedBarChart',
 }
 
-type AxisProps = { color: string }
+type GBCProps = { split: string }
 
-export const GBC = ({ color = "orange" }: AxisProps) => {
-    // const [data, setData] = useState([{ name: 'Article I', pred: 1, label: 0.0 }]);
+export const GBC = ({ split = "test" }: GBCProps) => {
+    const explain = (split == "test") ? "- test cases represent the model's classification power since the model has never seen the true label of those cases while on training." :
+        "- train cases are not representing the model's classification power since the model has already seen the true label of those cases while on training."
+
+    const upper_split = (split == "test") ? "Test" : "Train"
+
     const [data, setData] = useState([{ "name": 'Article I', "pred": 1, "label": 0.0 }]);
 
     const numData = data.length
@@ -66,15 +70,15 @@ export const GBC = ({ color = "orange" }: AxisProps) => {
     const ds = parseInt(curr_state.select.ds)
 
     useEffect(() => {
-        async function updateData(ds: number) {
-            const result = await API.graphql(graphqlOperation(getInvokabilties, { ds: ds }));
-            const newData = JSON.parse(result.data.getInvokabilties.scores)
+        async function updateData(ds: number, split: string, version: string) {
+            const result = await API.graphql(graphqlOperation(getInvokabilities, { ds_split: ds.toString() + "_" + split, version: version }));
+            const newData = JSON.parse(result.data.getInvokabilities.scores.replace(/'/g, '"'))
             if (data !== newData) {
                 console.log(data, newData)
                 setData(newData)
             }
         }
-        updateData(ds)
+        updateData(ds, split, "1.0.0")
     }, [ds]);
 
     useEffect(() => {
@@ -208,7 +212,7 @@ export const GBC = ({ color = "orange" }: AxisProps) => {
                 .attr("y", unit)
                 .attr("x", marginLeft - unit)
                 .attr("text-anchor", "start")
-                .text("Test Cases");
+                .text(`${upper_split} Cases`);
 
             const subtitle = selection
                 .selectAll("subtitle")
@@ -222,7 +226,7 @@ export const GBC = ({ color = "orange" }: AxisProps) => {
                 .attr("y", unit * 2.5)
                 .attr("x", marginLeft - unit)
                 .attr("text-anchor", "start")
-                .text("- test cases represent the model's classification power since the model has never seen the true label of the cases while on training");
+                .text(explain);
         }
     }, [selection, data])
 
