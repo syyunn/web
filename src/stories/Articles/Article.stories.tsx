@@ -128,10 +128,10 @@ export const Invokability: FunctionComponent<LogoProp> = ({ textColor = "navy" }
                 Model Prediction on Invokable Articles For DS 2
             </h1>
             <header className="fl-ns fn w-100-ns">
-                <GBC color="orange" />
+                <GBC split="test" />
             </header>
             <header className="w-50-ns">
-                <GBC color="orange" />
+                <GBC split="train" />
             </header>
         </article>
     )
