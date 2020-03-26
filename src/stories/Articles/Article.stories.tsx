@@ -3,7 +3,7 @@ import { AxisTest, AxisTrain, Compare } from '../D3/Axis.stories'
 import { Image } from '../Images/Image.stories'
 import { PrevNextButton, Pagination } from '../Buttons/Nav.stories'
 import { GBC } from '../D3/GroupedBarChart.stories'
-import { ChromaScale } from '../D3/ChromaScale.stories'
+import { ChromaScale, ChromaScaleDefault } from '../D3/ChromaScale.stories'
 import { ListOverflowDSLightYellow } from '../Menu/ListOverflow.stories'
 
 import { useDispatch, useSelector } from "react-redux";
@@ -95,13 +95,7 @@ export const GovGradCAM: FunctionComponent<LogoProp> = ({ textColor = "navy" }) 
                 *Brighter color means that the model thinks the corresponding word is more important for the case to be predicted as invokable.
             </h1>
             <div className="fl-ns w-100-ns pr4-ns">
-                {/* <Image /> */}
-                <ChromaScale />
-            </div>
-
-            <div className="fl-ns w-100-ns pr4-ns">
-                {/* <Image /> */}
-                <PrevNextButton />
+                <ChromaScaleDefault />
             </div>
         </div>
     )
@@ -124,13 +118,7 @@ export const ArticleGradCAM: FunctionComponent<LogoProp> = ({ textColor = "navy"
                 *Brighter color means that the model thinks the corresponding word is more important for the case to be predicted as invokable.
             </h1>
             <div className="fl-ns w-100-ns pr4-ns">
-                {/* <Image /> */}
-                <ChromaScale />
-            </div>
-
-            <div className="fl-ns w-100-ns pr4-ns">
-                {/* <Image /> */}
-                <PrevNextButton />
+                <ChromaScaleDefault />
             </div>
         </div>
     )
