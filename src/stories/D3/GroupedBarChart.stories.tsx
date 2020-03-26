@@ -205,6 +205,7 @@ export const GBC = ({ split = "test" }: GBCProps) => {
                 .enter()
 
             const title_text = legend
+                .append('g')
                 .append("text")
                 .attr("font-size", 25)
                 .attr("font-family", "avenir")
@@ -212,7 +213,7 @@ export const GBC = ({ split = "test" }: GBCProps) => {
                 .attr("y", unit)
                 .attr("x", marginLeft - unit)
                 .attr("text-anchor", "start")
-                .text(`${upper_split} Cases`);
+                .text(`${upper_split} Cases For DS ${ds}`);
 
             const subtitle = selection
                 .selectAll("subtitle")
