@@ -23,18 +23,20 @@ export default {
 
 type ChromaScaleType = { data: number[], text: string[] }
 
-export const ChromaScale = ({ data = [0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7], text = ["In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev"] }: ChromaScaleType) => {
+export const ChromaScale = ({ data = [0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7], text = ["In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "we", "loved", "charming", "around", "the", "corner", "dev", "we", "loved", "charming", "around", "the", "corner", "dev"] }: ChromaScaleType) => {
     const unit = 20
     const marginTop = unit * 1
     const marginLeft = unit * 2
+    const marginBottom = unit * 1
     const rectWidth = 90
     const widthNumRects = 15
     const vertMarginBtwRects = unit * 1.5
+    const lineLength = 5
+    const textLength = 20
 
     const dimensions = {
-        svgWidth: 1600 + marginLeft,
-        svgHeight: 500,
-        barWidth: 20,
+        svgWidth: rectWidth * widthNumRects + marginLeft,
+        svgHeight: Math.floor(data.length / widthNumRects) * (rectWidth + lineLength + textLength + vertMarginBtwRects) + marginBottom
     }
 
     const svgRef = useRef<null | SVGSVGElement>(null)
@@ -87,7 +89,7 @@ export const ChromaScale = ({ data = [0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4,
                     return marginLeft + (i % widthNumRects) * rectWidth + rectWidth * 0.5
                 })
                 .attr("y2", function (d, i) {
-                    return marginTop + rectWidth + Math.floor(i / widthNumRects) * (rectWidth + vertMarginBtwRects) + 5;
+                    return marginTop + rectWidth + Math.floor(i / widthNumRects) * (rectWidth + vertMarginBtwRects) + lineLength;
                 })
 
             const rects_text = selection
@@ -103,7 +105,7 @@ export const ChromaScale = ({ data = [0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4,
                     return marginLeft + (i % widthNumRects) * rectWidth + rectWidth * 0.5
                 })
                 .attr("y", function (d, i) {
-                    return marginTop + rectWidth + Math.floor(i / widthNumRects) * (rectWidth + vertMarginBtwRects) + 20;
+                    return marginTop + rectWidth + Math.floor(i / widthNumRects) * (rectWidth + vertMarginBtwRects) + textLength;
                 })
         }
     }, [selection, data])

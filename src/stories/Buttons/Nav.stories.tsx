@@ -11,7 +11,7 @@ type SignInProp = {
 
 export const PrevNextButton: FunctionComponent<SignInProp> = ({ buttonColor = "blue" }) => {
     return (
-        <div className="flex items-center justify-center pb4 w-100 pr7">
+        <div className="flex items-center justify-center pb4 w-100 pr6">
             <a
                 href="#0"
                 className="f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa3 ba border-box mr4">
