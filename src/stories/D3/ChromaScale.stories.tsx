@@ -12,6 +12,7 @@ import { STATE } from "../../redux/actionTypes"
 import API, { graphqlOperation } from '@aws-amplify/api';
 import awsconfig from '../../aws-exports';
 import { getInvokabilities } from '../../graphqlQueries'
+import { PrevNextButton, Pagination } from '../Buttons/Nav.stories'
 
 import './Tooltip.css';
 
@@ -24,6 +25,7 @@ export default {
 type ChromaScaleType = { data: number[], text: string[] }
 
 export const ChromaScale = ({ data = [0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7], text = ["In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "we", "loved", "charming", "around", "the", "corner", "dev", "we", "loved", "charming", "around", "the", "corner", "dev"] }: ChromaScaleType) => {
+    let page = 0
     const unit = 20
     const marginTop = unit * 1
     const marginLeft = unit * 2
@@ -33,6 +35,10 @@ export const ChromaScale = ({ data = [0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4,
     const vertMarginBtwRects = unit * 1.5
     const lineLength = 5
     const textLength = 20
+    const allowRows = 6
+    const onePageDataNum = widthNumRects * allowRows
+    const totalPages = Math.ceil(data.length / onePageDataNum)
+    let currPageData = data.slice(page * onePageDataNum, (page + 1) * onePageDataNum)
 
     const dimensions = {
         svgWidth: rectWidth * widthNumRects + marginLeft,
@@ -111,6 +117,14 @@ export const ChromaScale = ({ data = [0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4,
     }, [selection, data])
 
     return (
-        <svg ref={svgRef} width={dimensions.svgWidth} height={dimensions.svgHeight} />
+        <div>
+            <svg ref={svgRef} width={dimensions.svgWidth} height={dimensions.svgHeight} />
+            <div className="fl-ns w-100-ns pr4-ns">
+                {/* <Image /> */}
+                <PrevNextButton />
+            </div>
+        </div>
     )
 }
+
+export const ChromaScaleDefault = () => ChromaScale({ data: [0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7], text: ["In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "we", "loved", "charming", "around", "the", "corner", "dev", "we", "loved", "charming", "around", "the", "corner", "dev"] })
