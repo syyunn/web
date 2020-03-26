@@ -4,6 +4,10 @@ import { Image } from '../Images/Image.stories'
 import { PrevNextButton, Pagination } from '../Buttons/Nav.stories'
 import { GBC } from '../D3/GroupedBarChart.stories'
 
+import { useDispatch, useSelector } from "react-redux";
+
+import { STATE } from "../../redux/actionTypes"
+
 export default {
     title: 'Articles/Article',
 };
@@ -122,10 +126,15 @@ export const ArticleGradCAM: FunctionComponent<LogoProp> = ({ textColor = "navy"
 
 
 export const Invokability: FunctionComponent<LogoProp> = ({ textColor = "navy" }) => {
+
+    const getSTATE = (state: STATE) => state
+    const curr_state = useSelector(getSTATE)
+    const ds = parseInt(curr_state.select.ds)
+
     return (
         <article className="cf mh4">
             <h1 className="f2 lh-title fw7 mb3 mt3 pt3 tc avenir">
-                Model Prediction on Invokable Articles For DS 2
+                Model Prediction on Invokable Articles For DS {ds}
             </h1>
             <header className="fl-ns fn w-100-ns">
                 <GBC split="test" />
