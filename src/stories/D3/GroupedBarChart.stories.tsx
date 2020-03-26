@@ -33,7 +33,7 @@ export const GBC = ({ split = "test" }: GBCProps) => {
 
     const numData = data.length
     const unit = 20
-    const marginLeft = unit * 5
+    const marginLeft = unit * 3.5
 
     const dimensions = {
         svgWidth: Math.max(marginLeft + 100 * numData, 6600),
