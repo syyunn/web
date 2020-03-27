@@ -24,8 +24,8 @@ export default {
 
 type ChromaScaleType = { data: number[], text: string[] }
 
-export const ChromaScale = ({ data = [0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7], text = ["In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "we", "loved", "charming", "around", "the", "corner", "dev", "we", "loved", "charming", "around", "the", "corner", "dev"] }: ChromaScaleType) => {
-    let page = 0
+export const ChromaScale = ({ data = [0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7,], text = ["In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "we", "loved", "charming", "around", "the", "corner", "dev", "we", "loved", "charming", "around", "the", "corner", "dev"] }: ChromaScaleType) => {
+    const [page, setPage] = useState<number>(0);
     const unit = 20
     const marginTop = unit * 1
     const marginLeft = unit * 2
@@ -38,7 +38,9 @@ export const ChromaScale = ({ data = [0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4,
     const allowRows = 6
     const onePageDataNum = widthNumRects * allowRows
     const totalPages = Math.ceil(data.length / onePageDataNum)
+
     let currPageData = data.slice(page * onePageDataNum, (page + 1) * onePageDataNum)
+    let currPageText = text.slice(page * onePageDataNum, (page + 1) * onePageDataNum)
 
     const dimensions = {
         svgWidth: rectWidth * widthNumRects + marginLeft,
@@ -120,11 +122,53 @@ export const ChromaScale = ({ data = [0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4,
         <div>
             <svg ref={svgRef} width={dimensions.svgWidth} height={dimensions.svgHeight} />
             <div className="fl-ns w-100-ns pr4-ns">
-                {/* <Image /> */}
-                <PrevNextButton />
-            </div>
+                <div className="flex items-center justify-center pb4 w-100 pr6">
+                    <a
+                        onClick={() =>
+                            (page > 0) ? setPage(page - 1) : null
+                        }
+                        className="f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa3 ba border-box mr4">
+                        <svg
+                            className="w1"
+                            data-icon="chevronLeft"
+                            viewBox="0 0 32 32"
+                            style={{ fill: "currentcolor" }}
+                        >
+                            <title>
+                                chevronLeft icon
+                    </title>
+                            <path d="M20 1 L24 5 L14 16 L24 27 L20 31 L6 16 z" />
+                        </svg>
+                        <span className="pl1">
+                            Prev
+                </span>
+                    </a>
+                    <div className="f5 no-underline inline-flex items-center pa3 mr4">
+                        <h1> {page + 1}/ {totalPages} </h1>
+                    </div>
+                    <a onClick={() =>
+                        (page + 1 < totalPages) ? setPage(page + 1) : null
+                    }
+                        className="f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa3 ba border-box"
+                    >
+                        <span className="pr1" >
+                            Next
+                </span>
+                        <svg
+                            className="w1"
+                            data-icon="chevronRight"
+                            viewBox="0 0 32 32"
+                            style={{ fill: "currentcolor" }}
+                        >
+                            <title>
+                                chevronRight icon
+                    </title>
+                            <path d="M12 1 L26 16 L12 31 L8 27 L18 16 L8 5 z" />
+                        </svg>
+                    </a >
+                </div >            </div>
         </div>
     )
 }
 
-export const ChromaScaleDefault = () => ChromaScale({ data: [0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7], text: ["In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "we", "loved", "charming", "around", "the", "corner", "dev", "we", "loved", "charming", "around", "the", "corner", "dev"] })
+export const ChromaScaleDefault = () => ChromaScale({ data: [0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7], text: ["In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "we", "loved", "charming", "around", "the", "corner", "dev", "we", "loved", "charming", "around", "the", "corner", "dev", "In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "we", "loved", "charming", "around", "the", "corner", "dev", "we", "loved", "charming", "around", "the", "corner", "dev"] })
