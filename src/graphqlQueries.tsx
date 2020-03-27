@@ -1,10 +1,11 @@
-export const getGovGradCam = `query GetGovGradCam($ds_art: String!) {
-    getGovGradCAM(ds_art: $ds_art) {
-      ds_art
-      image
-    }
+export const getGovGradCam = `query GetGovGradCam($ds_art: String!, $version: String!) {
+  getGovGradCAM(ds_art: $ds_art, version: $version) {
+    ds_art
+    version
+    weights
   }
-  `;
+}
+`;
 
 export const getInvokabilities = `query GetInvokabilities($ds_split: String!, $version: String!) {
   getInvokabilities(ds_split: $ds_split, version: $version) {

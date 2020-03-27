@@ -26,6 +26,7 @@ type ChromaScaleType = { data: number[], text: string[] }
 
 export const ChromaScale = ({ data = [0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7, 0.0007233462, 0.5, 1, 0.7, 0.4, 0.3, 0.6, 0.9, 1, 0.5, 0.6, 0.34, 0.17, 1, 0.5, 0.7,], text = ["In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "In", "Feb", "We", "were", "able", "fix", "the", "car", "well", "since", "we", "loved", "charming", "around", "the", "corner", "dev", "we", "loved", "charming", "around", "the", "corner", "dev", "we", "loved", "charming", "around", "the", "corner", "dev"] }: ChromaScaleType) => {
     const [page, setPage] = useState<number>(0);
+
     const unit = 20
     const marginTop = unit * 1
     const marginLeft = unit * 2
@@ -55,6 +56,15 @@ export const ChromaScale = ({ data = [0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4,
         undefined
     >>(null)
 
+    const getSTATE = (state: STATE) => state
+    const curr_state = useSelector(getSTATE)
+    const ds = parseInt(curr_state.select.ds)
+    const article = curr_state.select.article
+
+    useEffect(() => {
+        setPage(0)
+    }, [ds, article]);
+
     useEffect(() => {
         console.log("dataEffect", currPageData)
         if (!selection) {
@@ -69,6 +79,7 @@ export const ChromaScale = ({ data = [0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4,
                 .enter()
 
             const rects_color = rects
+                .append("g")
                 .append("rect")
                 .attr("x", function (d, i) {
                     return marginLeft + (i % widthNumRects) * rectWidth

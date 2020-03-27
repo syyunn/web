@@ -12,7 +12,7 @@ import { STATE } from "../../redux/actionTypes"
 
 import API, { graphqlOperation } from '@aws-amplify/api';
 import awsconfig from '../../aws-exports';
-import { getGovTokenized } from '../../graphqlQueries'
+import { getGovTokenized, getGovGradCam } from '../../graphqlQueries'
 
 API.configure(awsconfig);
 
@@ -88,14 +88,29 @@ export const GovGradCAM: FunctionComponent<LogoProp> = ({ textColor = "navy" }) 
     const ds = parseInt(curr_state.select.ds)
     const article = curr_state.select.article
     const [text, setText] = useState<string[]>(["this", "is", "default"]);
+    const [data, setData] = useState<number[]>([1.0, 0.7, 0.5]);
+
+    useEffect(() => {
+        async function updateData(ds: number, article: string, version: string) {
+            console.log(ds.toString() + "_" + article)
+            const result = await API.graphql(graphqlOperation(getGovGradCam, { ds_art: ds.toString() + "_" + article, version: version }));
+            console.log(result.data.getGovGradCAM)
+            const newData = result.data.getGovGradCAM.weights
+            if (data !== newData) {
+                console.log(data, newData)
+                setData(newData)
+            }
+        }
+        updateData(ds, article, "1.0.0")
+    }, [ds, article]);
 
     useEffect(() => {
         async function updateText(ds: number, version: string) {
             const result = await API.graphql(graphqlOperation(getGovTokenized, { ds: ds, version: version }));
-            const newData = result.data.getGovTokenized.tokens
-            if (text !== newData) {
-                console.log(text, newData)
-                setText(newData)
+            const newText = result.data.getGovTokenized.tokens
+            if (text !== newText) {
+                // console.log(text, newText)
+                setText(newText)
             }
         }
         updateText(ds, "1.0.0")
@@ -110,10 +125,13 @@ export const GovGradCAM: FunctionComponent<LogoProp> = ({ textColor = "navy" }) 
                 Factual aspects activated for the case : DS{ds} + {article}
             </div>
             <h1 className="f5 lh-title fw4 ml2 avenir">
-                *Brighter color means that the model thinks the corresponding word is more important for the case to be predicted as invokable.
+                <p>
+                    *Brighter color means that the model thinks the corresponding word is more important for the case to be predicted as invokable. <br />
+                    - If invokability is 0 or close to it, activations generated from the model are very small and it leads to dark colors for most words.
+                </p>
             </h1>
             <div className="fl-ns w-100-ns pr4-ns">
-                <ChromaScale text={text} data={[1.0, 0.7]} />
+                <ChromaScale text={text} data={data} />
             </div>
         </div>
     )
