@@ -14,3 +14,12 @@ export const getInvokabilities = `query GetInvokabilities($ds_split: String!, $v
   }
 }
 `;
+
+export const getGovTokenized = `query GetGovTokenized($ds: Int!, $version: String!) {
+  getGovTokenized(ds: $ds, version: $version) {
+    ds
+    version
+    tokens
+  }
+}
+`;

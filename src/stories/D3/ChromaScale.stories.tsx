@@ -37,7 +37,7 @@ export const ChromaScale = ({ data = [0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4,
     const textLength = 20
     const allowRows = 6
     const onePageDataNum = widthNumRects * allowRows
-    const totalPages = Math.ceil(data.length / onePageDataNum)
+    const totalPages = Math.ceil(text.length / onePageDataNum)
 
     let currPageData = data.slice(page * onePageDataNum, (page + 1) * onePageDataNum)
     let currPageText = text.slice(page * onePageDataNum, (page + 1) * onePageDataNum)
