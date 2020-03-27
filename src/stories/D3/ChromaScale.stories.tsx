@@ -77,9 +77,9 @@ export const ChromaScale = ({ data = [0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4,
                 .selectAll("rects")
                 .data(currPageData)
                 .enter()
+                .append("g")
 
             const rects_color = rects
-                .append("g")
                 .append("rect")
                 .attr("x", function (d, i) {
                     return marginLeft + (i % widthNumRects) * rectWidth

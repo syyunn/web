@@ -98,6 +98,9 @@ export const GovGradCAM: FunctionComponent<LogoProp> = ({ textColor = "navy" }) 
             const newData = result.data.getGovGradCAM.weights
             if (data !== newData) {
                 console.log(data, newData)
+                console.log("update data")
+                console.log(newData)
+
                 setData(newData)
             }
         }
@@ -126,12 +129,11 @@ export const GovGradCAM: FunctionComponent<LogoProp> = ({ textColor = "navy" }) 
             </div>
             <h1 className="f5 lh-title fw4 ml2 avenir">
                 <p>
-                    *Brighter color means that the model thinks the corresponding word is more important for the case to be predicted as invokable. <br />
-                    - If invokability is 0 or close to it, activations generated from the model are very small and it leads to dark colors for most words.
+                    *Brighter color means that the model has considered the corresponding word as more important one to determine the case's invokability. <br />
                 </p>
             </h1>
             <div className="fl-ns w-100-ns pr4-ns">
-                <ChromaScale text={text} data={data} />
+                <ChromaScale text={text} data={data.map(x => x * 10)} />
             </div>
         </div>
     )
