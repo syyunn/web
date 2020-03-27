@@ -88,25 +88,19 @@ export const GovGradCAM: FunctionComponent<LogoProp> = ({ textColor = "navy" }) 
     const ds = parseInt(curr_state.select.ds)
     const article = curr_state.select.article
     const [text, setText] = useState<string[]>(["this", "is", "default"]);
-    const [textLength, setTextLength] = useState<number>(2301);
     const [data, setData] = useState<number[]>([1.0, 0.7, 0.5]);
 
     useEffect(() => {
         async function updateData(ds: number, article: string, version: string) {
-            // console.log(ds.toString() + "_" + article)
             const result = await API.graphql(graphqlOperation(getGovGradCam, { ds_art: ds.toString() + "_" + article, version: version }));
-            // console.log(result.data.getGovGradCAM)
-            const newData = result.data.getGovGradCAM.weights.slice(0, textLength)
+            const newData = result.data.getGovGradCAM.weights.slice(0, (ds == 2) ? 2310 : text.length)
             if (data !== newData) {
                 console.log("update new data", newData)
-                // console.log("update data")
-                // console.log(newData)
-
                 setData(newData)
             }
         }
         updateData(ds, article, "1.0.0")
-    }, [ds, article, textLength]);
+    }, [ds, article]);
 
     useEffect(() => {
         async function updateText(ds: number, version: string) {
@@ -115,7 +109,6 @@ export const GovGradCAM: FunctionComponent<LogoProp> = ({ textColor = "navy" }) 
             if (text !== newText) {
                 // console.log(text, newText)
                 setText(newText)
-                setTextLength(newText.length)
             }
         }
         updateText(ds, "1.0.0")
