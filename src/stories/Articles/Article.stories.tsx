@@ -100,7 +100,7 @@ export const GovGradCAM: FunctionComponent<LogoProp> = ({ textColor = "navy" }) 
             }
         }
         updateData(ds, article, "1.0.0")
-    }, [ds, article]);
+    }, [text, article]);
 
     useEffect(() => {
         async function updateText(ds: number, version: string) {
