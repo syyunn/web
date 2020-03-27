@@ -44,7 +44,7 @@ export const ChromaScale = ({ data = [0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4,
 
     const dimensions = {
         svgWidth: rectWidth * widthNumRects + marginLeft,
-        svgHeight: Math.floor(data.length / widthNumRects) * (rectWidth + lineLength + textLength + vertMarginBtwRects) + marginBottom
+        svgHeight: allowRows * (rectWidth + lineLength + vertMarginBtwRects) + marginBottom
     }
 
     const svgRef = useRef<null | SVGSVGElement>(null)
@@ -56,7 +56,7 @@ export const ChromaScale = ({ data = [0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4,
     >>(null)
 
     useEffect(() => {
-        console.log("dataEffect", data)
+        console.log("dataEffect", currPageData)
         if (!selection) {
             setSelection(select(svgRef.current))
         } else {
@@ -65,7 +65,7 @@ export const ChromaScale = ({ data = [0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4,
 
             const rects = selection
                 .selectAll("rects")
-                .data(data)
+                .data(currPageData)
                 .enter()
 
             const rects_color = rects
@@ -102,8 +102,9 @@ export const ChromaScale = ({ data = [0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4,
 
             const rects_text = selection
                 .selectAll("rects")
-                .data(text)
+                .data(currPageText)
                 .enter()
+                .append("g")
                 .append("text")
                 .attr('text-anchor', 'middle')
                 .text(function (d, i) {
@@ -116,7 +117,7 @@ export const ChromaScale = ({ data = [0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4,
                     return marginTop + rectWidth + Math.floor(i / widthNumRects) * (rectWidth + vertMarginBtwRects) + textLength;
                 })
         }
-    }, [selection, data])
+    }, [selection, currPageData])
 
     return (
         <div>
