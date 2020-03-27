@@ -46,7 +46,7 @@ export const GBC = ({ split = "test" }: GBCProps) => {
     const marginBottom = unit * 5
     const marginTop = unit * 5
     const marginTitle = unit * 4
-    const label = ["model prediction", "label - if none, it means the article has not been invoked for the case"]
+    const label = ["model prediction", "label - either 1 or 0. If none, the article is not invoked for the case."]
     const colors = ["steelblue", "lightblue"]
 
     const y = scaleLinear()
