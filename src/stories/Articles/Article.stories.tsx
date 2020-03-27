@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import { AxisTest, AxisTrain, Compare } from '../D3/Axis.stories'
 import { Image } from '../Images/Image.stories'
 import { PrevNextButton, Pagination } from '../Buttons/Nav.stories'
@@ -9,6 +9,13 @@ import { ListOverflowDSLightYellow } from '../Menu/ListOverflow.stories'
 import { useDispatch, useSelector } from "react-redux";
 
 import { STATE } from "../../redux/actionTypes"
+
+import API, { graphqlOperation } from '@aws-amplify/api';
+import awsconfig from '../../aws-exports';
+import { getGovTokenized, getGovGradCam } from '../../graphqlQueries'
+
+API.configure(awsconfig);
+
 
 export default {
     title: 'Articles/Article',
@@ -80,9 +87,38 @@ export const GovGradCAM: FunctionComponent<LogoProp> = ({ textColor = "navy" }) 
     const curr_state = useSelector(getSTATE)
     const ds = parseInt(curr_state.select.ds)
     const article = curr_state.select.article
+    const [text, setText] = useState<string[]>(["this", "is", "default"]);
+    const [data, setData] = useState<number[]>([1.0, 0.7, 0.5]);
 
-    var text = 'WT/DS161/R\n                                                                                             WT/DS169/R\n                                                                                                    Page 3\nII.      FACTUAL ASPECTS\n1. Product coverage of the dispute\n8.       The case before the Panel concerned measures maintained by Korea on imports of beef of the\nfollowing tariff description4: 02.01-10: meat of bovine animals (fresh or chilled/carcasses and half-\ncarcasses); 02.01-20: meat of bovine animals (fresh or chilled/cuts with bone in); 02.01-30: meat of\nbovine animals (fresh or chilled/boneless); 02.02-10: meat of bovine animals (frozen/carcasses and\nhalf-carcasses): 02.02-20: meat of bovine animals (frozen/cuts with bone in); 02.02-30: meat of\nbovine animals (frozen/boneless);\n2. Korea\'s Schedule of Concessions\n9.       Korea\'s Schedule of tariff concessions (LX) provides for the entry of fresh, chilled and frozen\nbeef with market access opportunities rising from 123,000 tonnes in 1995 to 225.000 tonnes in 2000.\n'
-    var art = 'Article III\nNational Treatment on Internal Taxation and Regulation\n4. The products of the territory of any contracting party imported into the territory of any other contracting party shall not be subject, directly or indirectly, to internal taxes or other internal charges of any kind in excess of those applied, directly or indirectly, to like domestic products. Moreover, no contracting party shall otherwise apply internal taxes or other internal charges to imported or domestic products in a manner contrary to the principles set forth in paragraph 1.'
+    useEffect(() => {
+        async function updateData(ds: number, article: string, version: string) {
+            console.log(ds.toString() + "_" + article)
+            const result = await API.graphql(graphqlOperation(getGovGradCam, { ds_art: ds.toString() + "_" + article, version: version }));
+            console.log(result.data.getGovGradCAM)
+            const newData = result.data.getGovGradCAM.weights
+            if (data !== newData) {
+                console.log(data, newData)
+                console.log("update data")
+                console.log(newData)
+
+                setData(newData)
+            }
+        }
+        updateData(ds, article, "1.0.0")
+    }, [ds, article]);
+
+    useEffect(() => {
+        async function updateText(ds: number, version: string) {
+            const result = await API.graphql(graphqlOperation(getGovTokenized, { ds: ds, version: version }));
+            const newText = result.data.getGovTokenized.tokens
+            if (text !== newText) {
+                // console.log(text, newText)
+                setText(newText)
+            }
+        }
+        updateText(ds, "1.0.0")
+    }, [ds]);
+
     return (
         <div className="cf mh4">
             <h1 className="f2 lh-title fw7 mb3 mt3 pt3 tc avenir">
@@ -92,10 +128,12 @@ export const GovGradCAM: FunctionComponent<LogoProp> = ({ textColor = "navy" }) 
                 Factual aspects activated for the case : DS{ds} + {article}
             </div>
             <h1 className="f5 lh-title fw4 ml2 avenir">
-                *Brighter color means that the model thinks the corresponding word is more important for the case to be predicted as invokable.
+                <p>
+                    *Brighter color means that the model has considered the corresponding word as more important one to determine the case's invokability. <br />
+                </p>
             </h1>
             <div className="fl-ns w-100-ns pr4-ns">
-                <ChromaScaleDefault />
+                <ChromaScale text={text} data={data.map(x => x * 10)} />
             </div>
         </div>
     )

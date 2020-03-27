@@ -44,9 +44,9 @@ export const GBC = ({ split = "test" }: GBCProps) => {
     }
 
     const marginBottom = unit * 5
-    const marginTop = unit * 4
+    const marginTop = unit * 5
     const marginTitle = unit * 4
-    const label = ["pred", "label"]
+    const label = ["model prediction", "label - if none, it means the article has not been invoked for the case"]
     const colors = ["steelblue", "lightblue"]
 
     const y = scaleLinear()
@@ -189,8 +189,38 @@ export const GBC = ({ split = "test" }: GBCProps) => {
                     return colors[i];
                 })
 
+            const legend_sub_rects = legend
+                .append("rect")
+                .attr("x", function (d, i) {
+                    return marginLeft + i * unit * 2;
+                })
+                .attr("y",
+                    unit * 0.5 + 2 * unit * 1.5 + marginTitle - unit * 0.75
+                )
+                .attr("width", 20)
+                .attr("height", 20)
+                .attr("fill", function (d, i) {
+                    return colors[i];
+                })
+
+            const rects_line = legend
+                .append("line")
+                .style("stroke", "#111111")
+                .style("stroke-width", 1.5)
+                .attr("x1",
+                    marginLeft + unit * 1.25
+                )
+                .attr("y1", function (d, i) {
+                    return unit * 0.5 + 2 * unit * 1.5 + marginTitle - unit * 0.75 + unit * 0.5
+                })
+                .attr("x2", marginLeft + unit * 1.75)
+                .attr("y2", function (d, i) {
+                    return unit * 0.5 + 2 * unit * 1.5 + marginTitle - unit * 0.75 + unit * 0.5
+                })
+
             const legend_txts = legend
                 .append("text")
+                .attr("font-weight", 300)
                 .attr("y", function (d, i) {
                     return unit * 1.25 + i * unit * 1.5 + marginTitle - unit * 0.75;
                 })
@@ -199,6 +229,14 @@ export const GBC = ({ split = "test" }: GBCProps) => {
                 .text(function (d, i) {
                     return label[i];
                 });
+
+            const legend_subExplanation = legend
+                .append("text")
+                .attr("font-weight", 300)
+                .attr("y", unit * 1.25 + 2 * unit * 1.5 + marginTitle - unit * 0.75)
+                .attr("x", marginLeft + unit * 3.25)
+                // .attr("text-anchor", "start")
+                .text(" model fails as much as the model prediction deviates from the label");
 
             const title = selection
                 .selectAll("title")
