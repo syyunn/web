@@ -92,15 +92,10 @@ export const GovGradCAM: FunctionComponent<LogoProp> = ({ textColor = "navy" }) 
 
     useEffect(() => {
         async function updateData(ds: number, article: string, version: string) {
-            console.log(ds.toString() + "_" + article)
             const result = await API.graphql(graphqlOperation(getGovGradCam, { ds_art: ds.toString() + "_" + article, version: version }));
-            console.log(result.data.getGovGradCAM)
-            const newData = result.data.getGovGradCAM.weights
+            const newData = result.data.getGovGradCAM.weights.slice(0, (ds == 2) ? 2310 : text.length)
             if (data !== newData) {
-                console.log(data, newData)
-                console.log("update data")
-                console.log(newData)
-
+                console.log("update new data", newData)
                 setData(newData)
             }
         }

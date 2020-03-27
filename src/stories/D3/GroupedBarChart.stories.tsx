@@ -74,7 +74,7 @@ export const GBC = ({ split = "test" }: GBCProps) => {
             const result = await API.graphql(graphqlOperation(getInvokabilities, { ds_split: ds.toString() + "_" + split, version: version }));
             const newData = JSON.parse(result.data.getInvokabilities.scores.replace(/'/g, '"'))
             if (data !== newData) {
-                console.log(data, newData)
+                // console.log(data, newData)
                 setData(newData)
             }
         }
@@ -82,7 +82,7 @@ export const GBC = ({ split = "test" }: GBCProps) => {
     }, [ds]);
 
     useEffect(() => {
-        console.log("dataEffect", data)
+        // console.log("dataEffect", data)
         if (!selection) {
             setSelection(select(svgRef.current))
         } else {
