@@ -24,8 +24,8 @@ export default {
 type GBCProps = { split: string }
 
 export const GBC = ({ split = "test" }: GBCProps) => {
-    const explain = (split == "test") ? "- test cases represent the model's classification power since the model has never seen the true label of those cases while on training." :
-        "- train cases are not representing the model's classification power since the model has already seen the true label of those cases while on training."
+    const explain = (split == "test") ? "- test cases represent the model's classification power since the model has never seen the true label of those cases during the training process." :
+        "- train cases are not representing the model's classification power since the model has already seen the true label of those cases during the training process."
 
     const upper_split = (split == "test") ? "Test" : "Train"
 
