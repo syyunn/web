@@ -95,6 +95,7 @@ export const ChromaScale = ({ data = [0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4,
                 })
 
             const rects_line = rects
+                .append("g")
                 .append("line")
                 .style("stroke", "#111111")
                 .style("stroke-width", 1)
