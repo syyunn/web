@@ -29,7 +29,7 @@ export const GBC = ({ split = "test" }: GBCProps) => {
 
     const upper_split = (split == "test") ? "Test" : "Train"
 
-    const [data, setData] = useState([{ "name": 'Article I', "pred": 1, "label": 0.0 }]);
+    const [data, setData] = useState([{ "name": '', "pred": 0.0, "label": 0.0 }]);
 
     const numData = data.length
     const unit = 20
