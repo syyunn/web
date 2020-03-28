@@ -133,7 +133,7 @@ export const ChromaScale = ({ data = [0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4,
 
     return (
         <div>
-            <div className="flex items-center justify-center">
+            <div className="pl5 pl5-ns">
                 <svg ref={svgRef} width={dimensions.svgWidth} height={dimensions.svgHeight} />
             </div>
             <div className="flex pl5-ns pr5-ns justify-center mb3" >
