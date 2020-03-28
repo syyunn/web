@@ -209,7 +209,7 @@ export const ArticleGradCAM: FunctionComponent<LogoProp> = ({ textColor = "navy"
                 Article content activated for the case : DS{ds} + {article}
             </div>
             <h1 className="f5 lh-title fw4 ml2 avenir">
-                *Brighter color means that the model thinks the corresponding word is more important for the case to be predicted as invokable.
+                *Brighter color means that the model has considered the corresponding word as more important one to determine the case's invokability. <br />
             </h1>
             <div className="fl-ns w-100-ns pr4-ns">
                 {isLoading ?
