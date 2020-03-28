@@ -33,3 +33,11 @@ export const getArticleTokenized = `query GetArticleTokenized($article: String!,
   }
 }
 `;
+export const getArticleGradCam = `query GetArticleGradCam($ds_art: String!, $version: String!) {
+  getArticleGradCAM(ds_art: $ds_art, version: $version) {
+    ds_art
+    version
+    weights
+  }
+}
+`;

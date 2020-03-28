@@ -12,7 +12,7 @@ import { STATE } from "../../redux/actionTypes"
 
 import API, { graphqlOperation } from '@aws-amplify/api';
 import awsconfig from '../../aws-exports';
-import { getGovTokenized, getGovGradCam, getArticleTokenized } from '../../graphqlQueries'
+import { getGovTokenized, getGovGradCam, getArticleTokenized, getArticleGradCam } from '../../graphqlQueries'
 import Loader from 'react-loader-spinner'
 
 API.configure(awsconfig);
@@ -24,6 +24,10 @@ export default {
 
 type LogoProp = {
     textColor?: string
+}
+
+const monotoneDecrease = (x: number) => {
+    return Math.log(x + 1)
 }
 
 export const Article: FunctionComponent<LogoProp> = ({ textColor = "navy" }) => {
@@ -149,7 +153,7 @@ export const GovGradCAM: FunctionComponent<LogoProp> = ({ textColor = "navy" }) 
                     >
                         <Loader color="#2BAD60" height={100} width={100} />
                     </div>
-                    : <ChromaScale text={text} data={data.map(x => Math.log(x * 10 + 1) / Math.log(2))} />}
+                    : <ChromaScale text={text} data={data.map(x => monotoneDecrease(x))} />}
             </div>
         </div>
     )
@@ -172,8 +176,9 @@ export const ArticleGradCAM: FunctionComponent<LogoProp> = ({ textColor = "navy"
         setIsLoading(true)
         console.log("is loading: ", isLoading)
         async function updateData(ds: number, article: string, version: string) {
-            const result = await API.graphql(graphqlOperation(getGovGradCam, { ds_art: ds.toString() + "_" + article, version: version }));
-            const newData = result.data.getGovGradCAM.weights.slice(0, (ds == 2) ? 2310 : text.length)
+            console.log(ds.toString() + "_" + article, text.length)
+            const result = await API.graphql(graphqlOperation(getArticleGradCam, { ds_art: ds.toString() + "_" + article, version: version }));
+            const newData = result.data.getArticleGradCAM.weights.slice(0, (article == "Article I") ? 606 : text.length)
             if (data !== newData) {
                 console.log("update new data", newData)
                 setData(newData)
@@ -216,7 +221,7 @@ export const ArticleGradCAM: FunctionComponent<LogoProp> = ({ textColor = "navy"
                     >
                         <Loader color="#2BAD60" height={100} width={100} />
                     </div>
-                    : <ChromaScale text={text} data={data.map(x => x * 10)} />}
+                    : <ChromaScale text={text} data={data.map(x => monotoneDecrease(x))} />}
             </div>
         </div>
     )
