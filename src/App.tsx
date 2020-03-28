@@ -12,7 +12,7 @@ function App() {
       <Helmet>
         <meta charSet="utf-8" />
         <title>DeepWTO: A Deep Learning Approach for Predicting Invokable Articles in WTO</title>
-        <link rel="canonical" href="deepwto.org" />
+        <link rel="canonical" href="https://deepwto-web-api9a69179d4be7446a8d669a50296ce2deapi-dev.s3.amazonaws.com/preview.png" />
       </Helmet>
       <Entire />
     </div>
