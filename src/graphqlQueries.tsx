@@ -24,3 +24,12 @@ export const getGovTokenized = `query GetGovTokenized($ds: Int!, $version: Strin
   }
 }
 `;
+
+export const getArticleTokenized = `query GetArticleTokenized($article: String!, $version: String!) {
+  getArticleTokenized(article: $article, version: $version) {
+    article
+    version
+    tokens
+  }
+}
+`;

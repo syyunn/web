@@ -12,7 +12,7 @@ import { STATE } from "../../redux/actionTypes"
 
 import API, { graphqlOperation } from '@aws-amplify/api';
 import awsconfig from '../../aws-exports';
-import { getGovTokenized, getGovGradCam } from '../../graphqlQueries'
+import { getGovTokenized, getGovGradCam, getArticleTokenized } from '../../graphqlQueries'
 import Loader from 'react-loader-spinner'
 
 API.configure(awsconfig);
@@ -180,19 +180,19 @@ export const ArticleGradCAM: FunctionComponent<LogoProp> = ({ textColor = "navy"
             }
         }
         updateData(ds, article, "1.0.0")
-    }, [text, article]);
+    }, [text, ds]);
 
     useEffect(() => {
-        async function updateText(ds: number, version: string) {
-            const result = await API.graphql(graphqlOperation(getGovTokenized, { ds: ds, version: version }));
-            const newText = result.data.getGovTokenized.tokens
+        async function updateText(article: string, version: string) {
+            const result = await API.graphql(graphqlOperation(getArticleTokenized, { article: article, version: version }));
+            const newText = result.data.getArticleTokenized.tokens
             if (text !== newText) {
                 // console.log(text, newText)
                 setText(newText)
             }
         }
-        updateText(ds, "1.0.0")
-    }, [ds]);
+        updateText(article, "1.0.0")
+    }, [article]);
 
     return (
         <div className="cf mh4 mb3 mt3 pt3">
