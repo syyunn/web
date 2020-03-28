@@ -13,6 +13,7 @@ import { STATE } from "../../redux/actionTypes"
 import API, { graphqlOperation } from '@aws-amplify/api';
 import awsconfig from '../../aws-exports';
 import { getGovTokenized, getGovGradCam } from '../../graphqlQueries'
+import Loader from 'react-loader-spinner'
 
 API.configure(awsconfig);
 
@@ -89,8 +90,15 @@ export const GovGradCAM: FunctionComponent<LogoProp> = ({ textColor = "navy" }) 
     const article = curr_state.select.article
     const [text, setText] = useState<string[]>(["this", "is", "default"]);
     const [data, setData] = useState<number[]>([1.0, 0.7, 0.5]);
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
     useEffect(() => {
+        setIsLoading(false)
+    }, [data])
+
+    useEffect(() => {
+        setIsLoading(true)
+        console.log("is loading: ", isLoading)
         async function updateData(ds: number, article: string, version: string) {
             const result = await API.graphql(graphqlOperation(getGovGradCam, { ds_art: ds.toString() + "_" + article, version: version }));
             const newData = result.data.getGovGradCAM.weights.slice(0, (ds == 2) ? 2310 : text.length)
@@ -128,7 +136,20 @@ export const GovGradCAM: FunctionComponent<LogoProp> = ({ textColor = "navy" }) 
                 </p>
             </h1>
             <div className="fl-ns w-100-ns pr4-ns">
-                <ChromaScale text={text} data={data.map(x => x * 10)} />
+                {isLoading ?
+                    <div
+                        className="mt3 mb3"
+                        style={{
+                            width: "100%",
+                            height: "100",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center"
+                        }}
+                    >
+                        <Loader color="#2BAD60" height={100} width={100} />
+                    </div>
+                    : <ChromaScale text={text} data={data.map(x => x * 10)} />}
             </div>
         </div>
     )
