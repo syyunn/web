@@ -149,7 +149,7 @@ export const GovGradCAM: FunctionComponent<LogoProp> = ({ textColor = "navy" }) 
                     >
                         <Loader color="#2BAD60" height={100} width={100} />
                     </div>
-                    : <ChromaScale text={text} data={data.map(x => x * 10)} />}
+                    : <ChromaScale text={text} data={data.map(x => Math.log(x * 10 + 1) / Math.log(2))} />}
             </div>
         </div>
     )
