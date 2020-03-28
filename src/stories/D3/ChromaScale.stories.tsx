@@ -133,9 +133,11 @@ export const ChromaScale = ({ data = [0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4,
 
     return (
         <div>
-            <svg ref={svgRef} width={dimensions.svgWidth} height={dimensions.svgHeight} />
-            <div className="fl-ns w-100-ns pr4-ns">
-                <div className="flex items-center justify-center pb4 w-100 pr6">
+            <div className="flex items-center justify-center">
+                <svg ref={svgRef} width={dimensions.svgWidth} height={dimensions.svgHeight} />
+            </div>
+            <div className="flex pl5-ns pr5-ns justify-center mb3" >
+                <div className="flex items-center justify-center">
                     <a
                         onClick={() =>
                             (page > 0) ? setPage(page - 1) : null
@@ -156,9 +158,9 @@ export const ChromaScale = ({ data = [0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4,
                             Prev
                 </span>
                     </a>
-                    <div className="f5 no-underline inline-flex items-center pa3 mr4">
-                        <h1> {page + 1}/ {totalPages} </h1>
-                    </div>
+                    <h1 className="no-underline inline-flex items-center mr4 ">
+                        {page + 1}/ {totalPages}
+                    </h1>
                     <a onClick={() =>
                         (page + 1 < totalPages) ? setPage(page + 1) : null
                     }
