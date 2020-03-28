@@ -12,7 +12,7 @@ import { STATE } from "../../redux/actionTypes"
 
 import API, { graphqlOperation } from '@aws-amplify/api';
 import awsconfig from '../../aws-exports';
-import { getGovTokenized, getGovGradCam } from '../../graphqlQueries'
+import { getGovTokenized, getGovGradCam, getArticleTokenized } from '../../graphqlQueries'
 import Loader from 'react-loader-spinner'
 
 API.configure(awsconfig);
@@ -160,9 +160,40 @@ export const ArticleGradCAM: FunctionComponent<LogoProp> = ({ textColor = "navy"
     const curr_state = useSelector(getSTATE)
     const ds = parseInt(curr_state.select.ds)
     const article = curr_state.select.article
+    const [text, setText] = useState<string[]>(["this", "is", "default"]);
+    const [data, setData] = useState<number[]>([1.0, 0.7, 0.5]);
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
-    var text = 'WT/DS161/R\n                                                                                             WT/DS169/R\n                                                                                                    Page 3\nII.      FACTUAL ASPECTS\n1. Product coverage of the dispute\n8.       The case before the Panel concerned measures maintained by Korea on imports of beef of the\nfollowing tariff description4: 02.01-10: meat of bovine animals (fresh or chilled/carcasses and half-\ncarcasses); 02.01-20: meat of bovine animals (fresh or chilled/cuts with bone in); 02.01-30: meat of\nbovine animals (fresh or chilled/boneless); 02.02-10: meat of bovine animals (frozen/carcasses and\nhalf-carcasses): 02.02-20: meat of bovine animals (frozen/cuts with bone in); 02.02-30: meat of\nbovine animals (frozen/boneless);\n2. Korea\'s Schedule of Concessions\n9.       Korea\'s Schedule of tariff concessions (LX) provides for the entry of fresh, chilled and frozen\nbeef with market access opportunities rising from 123,000 tonnes in 1995 to 225.000 tonnes in 2000.\n'
-    var art = 'Article III\nNational Treatment on Internal Taxation and Regulation\n4. The products of the territory of any contracting party imported into the territory of any other contracting party shall not be subject, directly or indirectly, to internal taxes or other internal charges of any kind in excess of those applied, directly or indirectly, to like domestic products. Moreover, no contracting party shall otherwise apply internal taxes or other internal charges to imported or domestic products in a manner contrary to the principles set forth in paragraph 1.'
+    useEffect(() => {
+        setIsLoading(false)
+    }, [data])
+
+    useEffect(() => {
+        setIsLoading(true)
+        console.log("is loading: ", isLoading)
+        async function updateData(ds: number, article: string, version: string) {
+            const result = await API.graphql(graphqlOperation(getGovGradCam, { ds_art: ds.toString() + "_" + article, version: version }));
+            const newData = result.data.getGovGradCAM.weights.slice(0, (ds == 2) ? 2310 : text.length)
+            if (data !== newData) {
+                console.log("update new data", newData)
+                setData(newData)
+            }
+        }
+        updateData(ds, article, "1.0.0")
+    }, [text, ds]);
+
+    useEffect(() => {
+        async function updateText(article: string, version: string) {
+            const result = await API.graphql(graphqlOperation(getArticleTokenized, { article: article, version: version }));
+            const newText = result.data.getArticleTokenized.tokens
+            if (text !== newText) {
+                // console.log(text, newText)
+                setText(newText)
+            }
+        }
+        updateText(article, "1.0.0")
+    }, [article]);
+
     return (
         <div className="cf mh4 mb3 mt3 pt3">
             <div className="f3 lh-title fw6 ml2 avenir">
@@ -172,7 +203,20 @@ export const ArticleGradCAM: FunctionComponent<LogoProp> = ({ textColor = "navy"
                 *Brighter color means that the model thinks the corresponding word is more important for the case to be predicted as invokable.
             </h1>
             <div className="fl-ns w-100-ns pr4-ns">
-                <ChromaScaleDefault />
+                {isLoading ?
+                    <div
+                        className="mt3 mb3"
+                        style={{
+                            width: "100%",
+                            height: "100",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center"
+                        }}
+                    >
+                        <Loader color="#2BAD60" height={100} width={100} />
+                    </div>
+                    : <ChromaScale text={text} data={data.map(x => x * 10)} />}
             </div>
         </div>
     )
