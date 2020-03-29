@@ -26,6 +26,7 @@ export const NavHeaderBreadCrums: FunctionComponent<BreadCrumProps> = ({
                 <a className="f6 f5-l link bg-animate black-80 hover-bg-light-yellow dib pa3 ph4-l" href="https://drive.google.com/open?id=1l9igRRgHjZSmPnZKPay8eNdQYvuFO7y0">About</a>
                 <a className="f6 f5-l link bg-animate black-80 hover-bg-green bg-light-green dib pa3 ph4-l" href="/">Demo</a>
                 <a className="f6 f5-l link bg-animate black-80 hover-bg-light-red dib pa3 ph4-l" href="https://github.com/syyunn/DeepWTO">Github</a>
+                <a className="f6 f5-l link bg-animate black-80 hover-bg-blue dib pa3 ph4-l" href="mailto:syyun@snu.ac.kr">Email: syyun@snu.ac.kr</a>
                 {/* <a className="f6 f5-l link bg-animate black-80 hover-bg-light-blue dib pa3 ph4-l" href="/shop">Shop</a>
                 <a className="f6 f5-l link bg-animate black-80 hover-bg-light-pink dib pa3 ph4-l" href="/about">About</a>
                 <a className="f6 f5-l link bg-animate black-80 hover-bg-light-yellow dib pa3 ph4-l" href="/contact">Contact</a> */}
