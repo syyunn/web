@@ -32,7 +32,7 @@ export const ChromaScale = ({ data = [0.2056794, 0.0007233462, 0.5, 1, 0.7, 0.4,
     const marginLeft = unit * 2
     const marginBottom = unit * 1
     const rectWidth = 90
-    const widthNumRects = 15
+    const widthNumRects = 20
     const vertMarginBtwRects = unit * 1.5
     const lineLength = 5
     const textLength = 20
