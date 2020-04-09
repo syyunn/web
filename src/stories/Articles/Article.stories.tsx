@@ -138,9 +138,14 @@ export const GovGradCAM: FunctionComponent<LogoProp> = ({ textColor = "navy" }) 
             <div className="f3 lh-title fw6 ml2 avenir">
                 Factual aspects activated for the case : DS{ds} + {article}
             </div>
-            <h1 className="f5 lh-title fw4 ml2 avenir">
+            <h1 className="f4 lh-title fw4 ml2 avenir">
                 <p>
                     *Brighter color means that the model has considered the corresponding word as more important one to determine the case's invokability. <br />
+                </p>
+            </h1>
+            <h1 className="f4 lh-title fw4 ml2 avenir">
+                <p>
+                    ** Visualization has adopted the method called <a href="https://arxiv.org/abs/1610.02391"> GradCAM</a>  <br />
                 </p>
             </h1>
             <div className="fl-ns w-100-ns pr4-ns">
@@ -208,8 +213,15 @@ export const ArticleGradCAM: FunctionComponent<LogoProp> = ({ textColor = "navy"
             <div className="f3 lh-title fw6 ml2 avenir">
                 Article content activated for the case : DS{ds} + {article}
             </div>
-            <h1 className="f5 lh-title fw4 ml2 avenir">
-                *Brighter color means that the model has considered the corresponding word as more important one to determine the case's invokability. <br />
+            <h1 className="f4 lh-title fw4 ml2 avenir">
+                <p>
+                    *Brighter color means that the model has considered the corresponding word as more important one to determine the case's invokability. <br />
+                </p>
+            </h1>
+            <h1 className="f4 lh-title fw4 ml2 avenir">
+                <p>
+                    ** Visualization has adopted the method called <a href="https://arxiv.org/abs/1610.02391"> GradCAM</a>  <br />
+                </p>
             </h1>
             <div className="fl-ns w-100-ns pr4-ns">
                 {isLoading ?
